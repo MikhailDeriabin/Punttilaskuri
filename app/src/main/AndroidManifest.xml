@@ -9,6 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Punttilaskuri">
+        <activity android:name=".CalculatorActivity">
+            <intent-filter>
+                <action android:name="com.example.punttilaskuri.CalculatorActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".CalendarActivity">
+            <intent-filter>
+                <action android:name="com.example.punttilaskuri.CalendarActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

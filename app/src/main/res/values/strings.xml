@@ -3,4 +3,5 @@
     <string name="mainActivity_title">Tervetuloa,\nvalitse toiminto:</string>
     <string name="mainActivity_calendarButton">Kalenteri</string>
     <string name="mainActivity_calculatorButton">Laskurit</string>
+    <string name="backButton">Takaisin</string>
 </resources>
