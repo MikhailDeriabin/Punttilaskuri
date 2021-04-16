@@ -25,6 +25,7 @@
         app:layout_constraintGuide_percent="0.2"/>
 
     <CalendarView
+        android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
