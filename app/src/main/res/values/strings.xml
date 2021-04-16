@@ -1,7 +1,13 @@
 <resources>
+    <!-- mainActivity -->
     <string name="app_name">Punttilaskuri</string>
     <string name="mainActivity_title">Tervetuloa,\nvalitse toiminto:</string>
     <string name="mainActivity_calendarButton">Kalenteri</string>
     <string name="mainActivity_calculatorButton">Laskurit</string>
+
+    <!-- calendarActivity -->
+    <string name="calendarActivity_title">Kalenteri</string>
+
+    <!-- common -->
     <string name="backButton">Takaisin</string>
 </resources>
