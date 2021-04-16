@@ -1,2 +1,2 @@
-# Punttilaskuri1
+# Punttilaskuri
 Terveyssovellus
