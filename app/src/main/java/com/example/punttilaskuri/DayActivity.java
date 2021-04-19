@@ -7,11 +7,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.IOException;
 
 public class DayActivity extends AppCompatActivity {
 
@@ -41,9 +40,10 @@ public class DayActivity extends AppCompatActivity {
 
         //Events
         loadJsonButton.setOnClickListener( v -> {
-            JsonFileHandler jsonFileHandler = new JsonFileHandler("daysInfo.json", this);
+            UserInputHandler ih = new UserInputHandler(this);
             try {
-                String result = jsonFileHandler.getJsonObject().getJSONObject("days").getJSONObject("1.2.2021").getJSONArray("notes").getString(0);
+                JSONObject jsonObj = new JSONObject(ih.readData("daysInfo.json"));
+                String result = jsonObj.getJSONObject(choseDate).getJSONArray("notes").getString(0);
                 jsonFileTV.setText(result);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -51,7 +51,13 @@ public class DayActivity extends AppCompatActivity {
         });
 
         addNoteButton.setOnClickListener( v -> {
-
+            String userInput = noteInputField.getText().toString();
+            UserInputHandler ih = new UserInputHandler(this);
+            try {
+                ih.addNote(userInput, choseDate);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         });
     }
 }
