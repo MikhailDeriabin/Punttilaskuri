@@ -8,6 +8,10 @@
     <!-- calendarActivity -->
     <string name="calendarActivity_title">Kalenteri</string>
 
+    <!-- dayActivity -->
+    <string name="dayActivity_noteInputField">muistiinpano</string>
+    <string name="dayActivity_addNoteButton">lisää muistiinpano</string>
+
     <!-- common -->
     <string name="backButton">Takaisin</string>
 </resources>

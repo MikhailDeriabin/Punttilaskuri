@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class UserInputHandler {
-    private Context context;
+    private final Context context;
 
     public UserInputHandler(Context context){
         this.context = context;
@@ -21,6 +21,9 @@ public class UserInputHandler {
 
     public void addNote(String note, String date) throws JSONException {
         String daysInfoContent = readData("daysInfo.json");
+        if(daysInfoContent.equals(""))
+            daysInfoContent = "{}";
+
         System.out.println("----------------");
         System.out.println(daysInfoContent);
         System.out.println("----------------");
@@ -31,6 +34,26 @@ public class UserInputHandler {
 
         jsonObject.getJSONObject(date).getJSONArray("notes").put(note);
         saveDataToFile("daysInfo.json", jsonObject.toString());
+    }
+
+    public String getAllNotes(String date){
+        String result = "";
+        try {
+            JSONObject jsonObj = new JSONObject(readData("daysInfo.json"));
+            JSONArray allNotes = jsonObj.getJSONObject(date).getJSONArray("notes");
+            int notesCount = allNotes.length();
+            for(int i = 0; i < notesCount; i++){
+                result += allNotes.getString(i) + "\n";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    public void clearAllNotes(){
+        saveDataToFile("daysInfo.json", "{}");
     }
 
     public void saveDataToFile(String fileName, String data){
