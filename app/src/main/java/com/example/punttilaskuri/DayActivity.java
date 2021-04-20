@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,7 +18,7 @@ public class DayActivity extends AppCompatActivity {
     // UI elements
     private TextView dateTV, jsonFileTV;
     private EditText noteInputField;
-    private Button loadJsonButton, addNoteButton;
+    private Button addNoteButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,33 +32,27 @@ public class DayActivity extends AppCompatActivity {
         //Defining UI elements
         dateTV = findViewById(R.id.dateTV);
         jsonFileTV = findViewById(R.id.jsonFileTV);
-        loadJsonButton = findViewById(R.id.loadJsonButton);
         noteInputField = findViewById(R.id.noteInputField);
         addNoteButton = findViewById(R.id.addNoteButton);
 
         String choseDate = choseDay + "." + choseMonth + "." + choseYear;
         dateTV.setText(choseDate);
 
-        //Events
-        loadJsonButton.setOnClickListener( v -> {
-            UserInputHandler ih = new UserInputHandler(this);
-            try {
-                JSONObject jsonObj = new JSONObject(ih.readData("daysInfo.json"));
-                String result = jsonObj.getJSONObject(choseDate).getJSONArray("notes").getString(0);
-                jsonFileTV.setText(result);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+        UserInputHandler ih = new UserInputHandler(this);
+        String userNotes = ih.getAllNotes(choseDate);
+        jsonFileTV.setText(userNotes);
 
+        //Events
         addNoteButton.setOnClickListener( v -> {
             String userInput = noteInputField.getText().toString();
-            UserInputHandler ih = new UserInputHandler(this);
             try {
                 ih.addNote(userInput, choseDate);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
+            String allNotes = ih.getAllNotes(choseDate);
+            jsonFileTV.setText(allNotes);
         });
     }
 }
