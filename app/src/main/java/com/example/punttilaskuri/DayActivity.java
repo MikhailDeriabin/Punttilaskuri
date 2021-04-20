@@ -18,7 +18,7 @@ public class DayActivity extends AppCompatActivity {
     // UI elements
     private TextView dateTV, jsonFileTV;
     private EditText noteInputField;
-    private Button addNoteButton;
+    private Button addNoteButton, clearAllNotesButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +34,7 @@ public class DayActivity extends AppCompatActivity {
         jsonFileTV = findViewById(R.id.jsonFileTV);
         noteInputField = findViewById(R.id.noteInputField);
         addNoteButton = findViewById(R.id.addNoteButton);
+        clearAllNotesButton = findViewById(R.id.clearAllNotesButton);
 
         String choseDate = choseDay + "." + choseMonth + "." + choseYear;
         dateTV.setText(choseDate);
@@ -53,6 +54,10 @@ public class DayActivity extends AppCompatActivity {
 
             String allNotes = ih.getAllNotes(choseDate);
             jsonFileTV.setText(allNotes);
+        });
+
+        clearAllNotesButton.setOnClickListener( v -> {
+            ih.clearAllNotes();
         });
     }
 }

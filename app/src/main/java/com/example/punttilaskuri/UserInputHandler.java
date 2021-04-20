@@ -21,6 +21,9 @@ public class UserInputHandler {
 
     public void addNote(String note, String date) throws JSONException {
         String daysInfoContent = readData("daysInfo.json");
+        if(daysInfoContent.equals(""))
+            daysInfoContent = "{}";
+
         System.out.println("----------------");
         System.out.println(daysInfoContent);
         System.out.println("----------------");
@@ -47,6 +50,10 @@ public class UserInputHandler {
         }
 
         return result;
+    }
+
+    public void clearAllNotes(){
+        saveDataToFile("daysInfo.json", "{}");
     }
 
     public void saveDataToFile(String fileName, String data){
