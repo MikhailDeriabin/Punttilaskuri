@@ -7,11 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.punttilaskuri.fileHandlers.NotesHandler;
 
-import java.io.IOException;
+import org.json.JSONException;
 
 public class DayActivity extends AppCompatActivity {
 
@@ -39,25 +37,31 @@ public class DayActivity extends AppCompatActivity {
         String choseDate = choseDay + "." + choseMonth + "." + choseYear;
         dateTV.setText(choseDate);
 
-        UserInputHandler ih = new UserInputHandler(this);
-        String userNotes = ih.getAllNotes(choseDate);
+        NotesHandler notesHandler = new NotesHandler(this);
+        String userNotes = notesHandler.getDayInformationAsString(choseDate);
         jsonFileTV.setText(userNotes);
 
         //Events
         addNoteButton.setOnClickListener( v -> {
             String userInput = noteInputField.getText().toString();
             try {
-                ih.addNote(userInput, choseDate);
+                notesHandler.addInformation(choseDate, userInput);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            String allNotes = ih.getAllNotes(choseDate);
+            String allNotes = notesHandler.getDayInformationAsString(choseDate);
+            jsonFileTV.setText(allNotes);
+        });
+
+        jsonFileTV.setOnClickListener( v -> {
+            notesHandler.removeOneItem(choseDate, 0);
+            String allNotes = notesHandler.getDayInformationAsString(choseDate);
             jsonFileTV.setText(allNotes);
         });
 
         clearAllNotesButton.setOnClickListener( v -> {
-            ih.clearAllNotes();
+            notesHandler.clearWholeJsonFile("daysInfo.json");
         });
     }
 }
