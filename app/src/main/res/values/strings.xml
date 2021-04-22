@@ -6,7 +6,10 @@
     <string name="mainActivity_calculatorButton">Laskurit</string>
 
     <!-- calendarActivity -->
-    <string name="calendarActivity_title">Kalenteri</string>
+    <string name="calendarActivity_menuButton">valikko näppäin</string>
+    <string name="calendarActivity_drawer_open">päävalikko on auki</string>
+    <string name="calendarActivity_drawer_close">päävalikko on kiini</string>
+    <string name="calendarActivity_drawer_showTrainingsButton">Harjoitukset</string>
 
     <!-- dayActivity -->
     <string name="dayActivity_noteInputField">muistiinpano</string>
