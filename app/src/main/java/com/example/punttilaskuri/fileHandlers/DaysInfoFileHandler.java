@@ -22,7 +22,7 @@ public class DaysInfoFileHandler extends FileHandler {
 
     private final String fileName = "daysInfo.json";
     //content type is type of information you store, can be notes or trainings
-    private String contentType = "notes";
+    private final String contentType;
 
     public DaysInfoFileHandler(Context context, String contentType) {
         super(context);
