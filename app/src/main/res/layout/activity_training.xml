@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2"/>
+        app:layout_constraintGuide_percent="0.05"/>
 
     <EditText
         android:id="@+id/trainingNameInput"
@@ -24,13 +24,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
+    <ListView
+        android:id="@+id/trainingMovesListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/trainingNameInput"
+        tools:layout_editor_absoluteX="105dp">
+
+    </ListView>
+
     <Button
         android:id="@+id/addTrainingMoveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="add"
+        android:layout_marginTop="16dp"
+        android:text="add move"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trainingNameInput" />
+        app:layout_constraintTop_toBottomOf="@+id/trainingMovesListView" />
+
+    <FrameLayout
+        android:id="@+id/moveNamesFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addTrainingMoveButton"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

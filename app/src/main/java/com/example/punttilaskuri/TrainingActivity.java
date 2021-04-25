@@ -1,6 +1,8 @@
 package com.example.punttilaskuri;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -10,6 +12,10 @@ import com.example.punttilaskuri.fileHandlers.TrainingsInfoFileHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
 public class TrainingActivity extends AppCompatActivity {
 
@@ -21,21 +27,34 @@ public class TrainingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_training);
 
+        Bundle b = getIntent().getExtras();
+        String trainingName = b.getString("trainingName", "");
+        boolean isNewTraining = b.getBoolean("isNewTraining", false);
+
         trainingNameInput = findViewById(R.id.trainingNameInput);
         addTrainingMoveButton = findViewById(R.id.addTrainingMoveButton);
 
-        addTrainingMoveButton.setOnClickListener(v -> {
-            TrainingsInfoFileHandler trainingsInfoFileHandler = new TrainingsInfoFileHandler(this);
-            String trainingName = trainingNameInput.getText().toString();
+        TrainingsInfoFileHandler trainingsInfoFileHandler = new TrainingsInfoFileHandler(this);
+        HashMap<String, ArrayList<String>> trainingInfo = trainingsInfoFileHandler.getTrainingInformationAsHashMap(trainingName);
 
-            JSONArray moveInfo = new JSONArray().put("my Move");
-            moveInfo.put("10");
-            moveInfo.put("3");
-            try {
-                trainingsInfoFileHandler.addMove(trainingName, "my Move", moveInfo);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+        trainingNameInput.setText(trainingName);
+
+        addTrainingMoveButton.setOnClickListener( v -> {
+            String newTrainingName = trainingNameInput.getText().toString();
+
+            //send data to fragment
+            AddNewMoveFragment fragment = new AddNewMoveFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("trainingName", newTrainingName);
+            fragment.setArguments(bundle);
+
+            //get all fragments
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+            //change fragment
+            fragmentTransaction.replace(R.id.moveNamesFrame, fragment);
+            fragmentTransaction.commit();
         });
     }
 }

@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 public class TrainingsInfoFileHandler extends FileHandler{
@@ -38,6 +39,52 @@ public class TrainingsInfoFileHandler extends FileHandler{
             moveName += Integer.toString(getSameStartElemCount(moveName, trainingMoves));
         trainingMoves.put(moveName, moveInformation);
         saveDataToFile(fileName, rootObject.toString());
+    }
+
+    //Get information (only about chose type notes or trainings) for chose day in ArrayList<String>
+    public HashMap<String, ArrayList<String>> getTrainingInformationAsHashMap(String trainingName){
+        HashMap<String, ArrayList<String>> trainingInformation = new HashMap<>();
+
+        try {
+            JSONObject jsonObj = new JSONObject(readData(fileName));
+            JSONObject allTrainingInfo = jsonObj.getJSONObject(trainingName).getJSONObject("moves");
+            Iterator<String> moves = allTrainingInfo.keys();
+            //Convert information to ArrayList
+            while(moves.hasNext()){
+                String moveName = moves.next();
+                JSONArray moveInformationJson = allTrainingInfo.getJSONArray(moveName);
+                ArrayList<String> moveInformation = new ArrayList<>();
+                for (int i = 0; i < moveInformationJson.length(); i++){
+                    moveInformation.add(moveInformationJson.getString(i));
+                }
+                trainingInformation.put(moveName, moveInformation);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return trainingInformation;
+    }
+
+    public String[] getTrainingNames(){
+        String[] trainingNames = null;
+        try {
+            JSONObject allTrainingsInformation = new JSONObject(readData(fileName));
+            Iterator<String> trainingNamesIterator = allTrainingsInformation.keys();
+            int trainingCount = allTrainingsInformation.length();
+            trainingNames = new String[trainingCount];
+            int i = 0;
+            while(trainingNamesIterator.hasNext()){
+                String trainingName = trainingNamesIterator.next();
+                trainingNames[i] = trainingName;
+                i++;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return trainingNames;
     }
 
     //Technical methods for this class
