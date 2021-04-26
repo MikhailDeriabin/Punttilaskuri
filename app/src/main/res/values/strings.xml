@@ -10,4 +10,26 @@
 
     <!-- common -->
     <string name="backButton">Takaisin</string>
+    <string name="age_text">Age</string>
+    <string name="weight_text">Weight</string>
+    <string name="height_text">Height</string>
+    <string name="heightUnit"> cm</string>
+    <string name="heightMax">250 cm</string>
+    <string name="weightUnit"> kg</string>
+    <string name="weightMax">300 kg</string>
+    <string name="buttonText">Laske BMR</string>
+    <string name="refreshButton">Refresh</string>
+    <string name="ageUnit"> years</string>
+    <string name="ageMax">100 years</string>
+    <string name="genderText">Gender</string>
+    <string name="maleText">Male</string>
+    <string name="femaleText">Female</string>
+    <string name="bmr_button">BMR</string>
+    <string name="laskurit_text">Laskurit</string>
+    <string name="bmi_button">BMI</string>
+
+    <!-- WeightCalculator -->
+    <String name="height_unit">%s cm</String>
+    <String name="weight_unit">%s Kg</String>
+    <String name="age_unit">%s years</String>
 </resources>
