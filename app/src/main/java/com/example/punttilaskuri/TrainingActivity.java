@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +21,8 @@ import java.util.Set;
 public class TrainingActivity extends AppCompatActivity {
 
     private EditText trainingNameInput;
-    private Button addTrainingMoveButton;
+    private Button addTrainingMoveButton, saveTrainingButton;
+    public Training training;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,19 +35,21 @@ public class TrainingActivity extends AppCompatActivity {
 
         trainingNameInput = findViewById(R.id.trainingNameInput);
         addTrainingMoveButton = findViewById(R.id.addTrainingMoveButton);
+        saveTrainingButton = findViewById(R.id.saveTrainingButton);
 
         TrainingsInfoFileHandler trainingsInfoFileHandler = new TrainingsInfoFileHandler(this);
-        HashMap<String, ArrayList<String>> trainingInfo = trainingsInfoFileHandler.getTrainingInformationAsHashMap(trainingName);
-
         trainingNameInput.setText(trainingName);
+
+        training = trainingsInfoFileHandler.getTrainingInfoAsTrainingObj(trainingName);
+
 
         addTrainingMoveButton.setOnClickListener( v -> {
             String newTrainingName = trainingNameInput.getText().toString();
 
             //send data to fragment
-            AddNewMoveFragment fragment = new AddNewMoveFragment();
+            AddNewMoveFragment fragment = new AddNewMoveFragment(training);
             Bundle bundle = new Bundle();
-            bundle.putString("trainingName", newTrainingName);
+            bundle.putBoolean("isNewTraining", isNewTraining);
             fragment.setArguments(bundle);
 
             //get all fragments
@@ -55,6 +59,17 @@ public class TrainingActivity extends AppCompatActivity {
             //change fragment
             fragmentTransaction.replace(R.id.moveNamesFrame, fragment);
             fragmentTransaction.commit();
+        });
+
+        saveTrainingButton.setOnClickListener(v -> {
+            try {
+                trainingsInfoFileHandler.rewriteTrainingByTrainingObject(training);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            Intent nextActivity = new Intent(this, CreatedTrainingsActivity.class);
+            startActivity(nextActivity);
         });
     }
 }

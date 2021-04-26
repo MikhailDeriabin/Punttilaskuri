@@ -1,5 +1,6 @@
 package com.example.punttilaskuri;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +15,17 @@ import com.example.punttilaskuri.fileHandlers.TrainingsInfoFileHandler;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.util.ArrayList;
+
 public class AddNewMoveFragment extends Fragment {
 
     private EditText newMoveNameInput, newMoveTimesInput, newMoveLoopsInput;
     private Button saveMoveButton;
+    private Training training;
+
+    public AddNewMoveFragment(Training training){
+        this.training = training;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,24 +41,13 @@ public class AddNewMoveFragment extends Fragment {
 
         saveMoveButton = view.findViewById(R.id.saveMoveButton);
 
-        String trainingName = getArguments().getString("trainingName", "");
-
         //Events
         saveMoveButton.setOnClickListener(v -> {
             String moveName = newMoveNameInput.getText().toString();
             String timesCount = newMoveTimesInput.getText().toString();
             String loopsCount = newMoveLoopsInput.getText().toString();
 
-            JSONArray moveInfo = new JSONArray();
-            moveInfo.put(moveName);
-            moveInfo.put(timesCount);
-            moveInfo.put(loopsCount);
-            try {
-                TrainingsInfoFileHandler trainingsInfoFileHandler = new TrainingsInfoFileHandler(getActivity());
-                trainingsInfoFileHandler.addMove(trainingName, moveName, moveInfo);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            training.addMove(moveName, timesCount, loopsCount);
         });
         // Inflate the layout for this fragment
         return view;

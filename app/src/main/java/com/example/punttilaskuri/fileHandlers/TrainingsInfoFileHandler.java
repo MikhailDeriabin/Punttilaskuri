@@ -2,6 +2,8 @@ package com.example.punttilaskuri.fileHandlers;
 
 import android.content.Context;
 
+import com.example.punttilaskuri.Training;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,6 +11,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Set;
 
 public class TrainingsInfoFileHandler extends FileHandler{
     private final String fileName = "trainingsInfo.json";
@@ -41,6 +44,32 @@ public class TrainingsInfoFileHandler extends FileHandler{
         saveDataToFile(fileName, rootObject.toString());
     }
 
+    public void rewriteTrainingByTrainingObject(Training trainingObj) throws JSONException{
+        String trainingName = trainingObj.getTrainingName();
+        HashMap<String, ArrayList<String>> trainingInformation = trainingObj.getTrainingInformation();
+        Set<String> movesNames = trainingObj.getMovesNames();
+
+        String trainingContent = readData(fileName);
+        if(trainingContent.equals(""))
+            trainingContent = "{}";
+
+        JSONObject rootObject = new JSONObject(trainingContent);
+        trainingName = trainingName.replaceAll("\\s", "");
+        //If for this day is not any notes or trainings, create object for this day(see file structure above)
+        if(rootObject.isNull(trainingName))
+            addTrainingObject(trainingName, rootObject);
+
+        rootObject.getJSONObject(trainingName).remove("moves");
+        rootObject.getJSONObject(trainingName).put("moves", new JSONObject("{}"));
+        JSONObject trainingMoves =  rootObject.getJSONObject(trainingName).getJSONObject("moves");
+
+        for(String moveName : movesNames){
+            trainingMoves.put(moveName, new JSONArray(trainingInformation.get(moveName)));
+        }
+
+        saveDataToFile(fileName, rootObject.toString());
+    }
+
     //Get information (only about chose type notes or trainings) for chose day in ArrayList<String>
     public HashMap<String, ArrayList<String>> getTrainingInformationAsHashMap(String trainingName){
         HashMap<String, ArrayList<String>> trainingInformation = new HashMap<>();
@@ -65,6 +94,11 @@ public class TrainingsInfoFileHandler extends FileHandler{
         }
 
         return trainingInformation;
+    }
+
+    public Training getTrainingInfoAsTrainingObj(String trainingName){
+        HashMap<String, ArrayList<String>> trainingInformation = getTrainingInformationAsHashMap(trainingName);
+        return new Training(trainingName, trainingInformation);
     }
 
     public String[] getTrainingNames(){
