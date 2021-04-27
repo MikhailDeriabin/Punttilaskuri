@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WeightCalculator">
+    tools:context=".CalorieCalculator">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline9"
@@ -13,21 +13,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="401dp"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingRefreshButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:contentDescription="@string/refreshButton"
-        android:focusable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.98"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline9"
-        app:layout_constraintVertical_bias="0.97"
-        app:srcCompat="@android:drawable/ic_popup_sync" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline13"
@@ -58,7 +43,6 @@
     <androidx.constraintlayout.widget.Group
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="floatingRefreshButton"
         tools:layout_editor_absoluteX="202dp"
         tools:layout_editor_absoluteY="498dp" />
 
@@ -71,10 +55,11 @@
 
     <Button
         android:id="@+id/count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="122dp"
+        android:layout_height="44dp"
         android:onClick="onClickCalories"
         android:text="@string/buttonText"
+        app:backgroundTint="@android:color/holo_blue_dark"
         app:layout_constraintBottom_toTopOf="@+id/guideline9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -127,8 +112,8 @@
     <SeekBar
         android:id="@+id/seekBarAge"
         style="@style/Widget.AppCompat.SeekBar"
-        android:layout_width="225dp"
-        android:layout_height="42dp"
+        android:layout_width="330dp"
+        android:layout_height="40dp"
         android:max="100"
         app:layout_constraintBottom_toTopOf="@+id/weight2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -137,8 +122,8 @@
 
     <SeekBar
         android:id="@+id/seekBarWeight"
-        android:layout_width="225dp"
-        android:layout_height="42dp"
+        android:layout_width="330dp"
+        android:layout_height="40dp"
         android:max="300"
         app:layout_constraintBottom_toTopOf="@+id/age"
         app:layout_constraintEnd_toEndOf="parent"
@@ -146,8 +131,8 @@
 
     <SeekBar
         android:id="@+id/seekBarHeight"
-        android:layout_width="225dp"
-        android:layout_height="42dp"
+        android:layout_width="330dp"
+        android:layout_height="40dp"
         android:max="250"
         app:layout_constraintBottom_toTopOf="@+id/weight"
         app:layout_constraintEnd_toEndOf="parent"
@@ -158,54 +143,48 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/ageUnit"
-        app:layout_constraintBottom_toBottomOf="@+id/seekBarAge"
-        app:layout_constraintEnd_toStartOf="@+id/seekBarAge"
-        app:layout_constraintTop_toBottomOf="@+id/age" />
+        app:layout_constraintBottom_toBottomOf="@+id/age"
+        app:layout_constraintStart_toStartOf="@+id/seekBarAge" />
 
     <TextView
         android:id="@+id/weightNow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/weightUnit"
-        app:layout_constraintBottom_toBottomOf="@+id/seekBarWeight"
-        app:layout_constraintEnd_toStartOf="@+id/seekBarWeight"
-        app:layout_constraintTop_toBottomOf="@+id/weight" />
+        app:layout_constraintBottom_toBottomOf="@+id/weight"
+        app:layout_constraintStart_toStartOf="@+id/seekBarWeight" />
 
     <TextView
         android:id="@+id/heightNow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/heightUnit"
-        app:layout_constraintBottom_toBottomOf="@+id/seekBarHeight"
-        app:layout_constraintEnd_toStartOf="@+id/seekBarHeight"
-        app:layout_constraintTop_toBottomOf="@+id/height" />
+        app:layout_constraintBottom_toBottomOf="@+id/height"
+        app:layout_constraintStart_toStartOf="@+id/seekBarHeight" />
 
     <TextView
         android:id="@+id/heightMax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/heightMax"
-        app:layout_constraintBottom_toBottomOf="@+id/seekBarHeight"
-        app:layout_constraintStart_toEndOf="@+id/seekBarHeight"
-        app:layout_constraintTop_toTopOf="@+id/seekBarHeight" />
+        app:layout_constraintBottom_toBottomOf="@+id/height"
+        app:layout_constraintEnd_toEndOf="@+id/seekBarHeight" />
 
     <TextView
         android:id="@+id/weightMax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/weightMax"
-        app:layout_constraintBottom_toBottomOf="@+id/seekBarWeight"
-        app:layout_constraintStart_toEndOf="@+id/seekBarWeight"
-        app:layout_constraintTop_toBottomOf="@+id/weight" />
+        app:layout_constraintBottom_toBottomOf="@+id/weight"
+        app:layout_constraintEnd_toEndOf="@+id/seekBarWeight" />
 
     <TextView
         android:id="@+id/ageMax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/ageMax"
-        app:layout_constraintBottom_toBottomOf="@+id/seekBarAge"
-        app:layout_constraintStart_toEndOf="@+id/seekBarAge"
-        app:layout_constraintTop_toBottomOf="@+id/age" />
+        app:layout_constraintBottom_toBottomOf="@+id/age"
+        app:layout_constraintEnd_toEndOf="@+id/seekBarAge" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline15"
@@ -259,9 +238,9 @@
         android:layout_marginTop="4dp"
         android:textColor="@color/black"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline13"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
-        app:layout_constraintStart_toStartOf="@+id/guideline14"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

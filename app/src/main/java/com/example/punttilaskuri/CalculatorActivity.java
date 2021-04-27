@@ -25,7 +25,7 @@ public class CalculatorActivity extends AppCompatActivity {
 
     public void calculatorButtons(View view){
         if(view == findViewById(R.id.bmr_enter)){
-            Intent caloryCalc = new Intent(this, WeightCalculator.class);
+            Intent caloryCalc = new Intent(this, CalorieCalculator.class);
             startActivity(caloryCalc);
         }
     }

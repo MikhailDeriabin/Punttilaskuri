@@ -12,7 +12,7 @@ import android.widget.TextView;
  * the user when the user has chosen all the parameters he/she desires.
  * @author Henri Johansson
  */
-public class WeightCalculator extends AppCompatActivity {
+public class CalorieCalculator extends AppCompatActivity {
 
     SeekBar seekBarHeight;
     SeekBar seekBarWeight;
@@ -27,13 +27,14 @@ public class WeightCalculator extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weight_calculator);
-        seekBarAge = (SeekBar) findViewById(R.id.seekBarAge);
-        seekBarWeight = (SeekBar) findViewById(R.id.seekBarWeight);
-        seekBarHeight = (SeekBar) findViewById(R.id.seekBarHeight);
-        height = (TextView) findViewById(R.id.heightNow);
-        weight = (TextView) findViewById(R.id.weightNow);
-        age = (TextView) findViewById(R.id.ageNow);
-        output = (TextView) findViewById(R.id.output);
+        seekBarAge = findViewById(R.id.seekBarAge);
+        seekBarWeight = findViewById(R.id.seekBarWeight);
+        seekBarHeight = findViewById(R.id.seekBarHeight);
+
+        height = findViewById(R.id.heightNow);
+        weight = findViewById(R.id.weightNow);
+        age = findViewById(R.id.ageNow);
+        output = findViewById(R.id.output);
 
         bmrCalc = new BmrCalculator(25,100, 10, true);
         setSeekBarListener(seekBarHeight, seekBarType.HEIGHT);
