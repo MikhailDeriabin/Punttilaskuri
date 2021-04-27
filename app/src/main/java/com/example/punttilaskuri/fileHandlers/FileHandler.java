@@ -1,6 +1,8 @@
 package com.example.punttilaskuri.fileHandlers;
 
 import android.content.Context;
+
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -62,5 +64,9 @@ public class FileHandler {
             }
         }
         return text;
+    }
+
+    public boolean isFileExist(String path){
+        return new File(path).exists();
     }
 }
