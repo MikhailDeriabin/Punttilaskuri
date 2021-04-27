@@ -24,15 +24,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
-    <ListView
-        android:id="@+id/trainingMovesListView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/trainingNameInput"
-        tools:layout_editor_absoluteX="105dp">
-
-    </ListView>
-
     <Button
         android:id="@+id/addTrainingMoveButton"
         android:layout_width="wrap_content"
@@ -42,18 +33,18 @@
         app:layout_constraintEnd_toStartOf="@+id/saveTrainingButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trainingMovesListView" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <Button
         android:id="@+id/saveTrainingButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="save"
-        app:layout_constraintBottom_toTopOf="@+id/moveNamesFrame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/addTrainingMoveButton"
-        app:layout_constraintTop_toBottomOf="@+id/trainingMovesListView" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <FrameLayout
         android:id="@+id/moveNamesFrame"
@@ -63,5 +54,37 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addTrainingMoveButton" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/trainingNameInput">
+
+        <ListView
+            android:id="@+id/trainingMovesListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/moveNamesFrame"
+        tools:layout_editor_absoluteX="0dp">
+
+        <ListView
+            android:id="@+id/movesNamesListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

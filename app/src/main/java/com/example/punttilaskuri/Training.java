@@ -2,14 +2,15 @@ package com.example.punttilaskuri;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Set;
 
 public class Training {
     private String trainingName;
-    private final HashMap<String, ArrayList<String>> movesInformation;
+    private LinkedHashMap<String, ArrayList<String>> movesInformation;
     private boolean isTrainingEmpty;
 
-    public Training(String trainingName, HashMap<String, ArrayList<String>> movesInformation){
+    public Training(String trainingName, LinkedHashMap<String, ArrayList<String>> movesInformation){
         this.trainingName = trainingName;
         this.movesInformation = movesInformation;
         isTrainingEmpty = defineIsTrainingEmpty();
@@ -67,6 +68,19 @@ public class Training {
         return result;
     }
 
+    public String[] getUserReadableMovesNamesAsArray(){
+        Set<String> moveNames = getMovesNames();
+        String[] result = new String[moveNames.size()];
+        if(!isTrainingEmpty){
+            int i = 0;
+            for(String move : moveNames){
+                result[i] = movesInformation.get(move).get(0);
+                i++;
+            }
+        }
+        return result;
+    }
+
     public Set<String> getMovesNames(){
         if(!isTrainingEmpty)
             return movesInformation.keySet();
@@ -105,7 +119,7 @@ public class Training {
     }
 
     private boolean defineIsTrainingEmpty(){
-        Boolean result;
+        boolean result;
         try{
             result = movesInformation.isEmpty();
         }catch (Exception e){

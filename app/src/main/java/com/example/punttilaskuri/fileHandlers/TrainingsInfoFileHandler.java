@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Set;
 
 public class TrainingsInfoFileHandler extends FileHandler{
@@ -29,7 +30,6 @@ public class TrainingsInfoFileHandler extends FileHandler{
             trainingContent = "{}";
 
         JSONObject rootObject = new JSONObject(trainingContent);
-        trainingName = trainingName.replaceAll("\\s", "");
         //If for this day is not any notes or trainings, create object for this day(see file structure above)
         if(rootObject.isNull(trainingName))
             addTrainingObject(trainingName, rootObject);
@@ -44,7 +44,7 @@ public class TrainingsInfoFileHandler extends FileHandler{
         saveDataToFile(fileName, rootObject.toString());
     }
 
-    public void rewriteTrainingByTrainingObject(Training trainingObj) throws JSONException{
+    public void rewriteTrainingByTrainingObject(Training trainingObj, boolean isNewTraining) throws JSONException{
         String trainingName = trainingObj.getTrainingName();
         HashMap<String, ArrayList<String>> trainingInformation = trainingObj.getTrainingInformation();
         Set<String> movesNames = trainingObj.getMovesNames();
@@ -54,7 +54,11 @@ public class TrainingsInfoFileHandler extends FileHandler{
             trainingContent = "{}";
 
         JSONObject rootObject = new JSONObject(trainingContent);
-        trainingName = trainingName.replaceAll("\\s", "");
+        if(isNewTraining && !rootObject.isNull(trainingName)){
+            int keyCount = getSameStartElemCount(trainingName, rootObject);
+            trainingName += Integer.toString(keyCount);
+        }
+
         //If for this day is not any notes or trainings, create object for this day(see file structure above)
         if(rootObject.isNull(trainingName))
             addTrainingObject(trainingName, rootObject);
@@ -70,12 +74,26 @@ public class TrainingsInfoFileHandler extends FileHandler{
         saveDataToFile(fileName, rootObject.toString());
     }
 
+    public void removeTraining(String trainingName) throws JSONException{
+        String trainingContent = readData(fileName);
+        JSONObject rootObject = new JSONObject(trainingContent);
+        rootObject.remove(trainingName);
+        saveDataToFile(fileName, rootObject.toString());
+    }
+
     //Get information (only about chose type notes or trainings) for chose day in ArrayList<String>
-    public HashMap<String, ArrayList<String>> getTrainingInformationAsHashMap(String trainingName){
-        HashMap<String, ArrayList<String>> trainingInformation = new HashMap<>();
+    public LinkedHashMap<String, ArrayList<String>> getTrainingInformationAsHashMap(String trainingName){
+        LinkedHashMap<String, ArrayList<String>> trainingInformation = new LinkedHashMap<>();
 
         try {
-            JSONObject jsonObj = new JSONObject(readData(fileName));
+            String trainingContent = readData(fileName);
+            if(trainingContent.equals(""))
+                trainingContent = "{}";
+            JSONObject jsonObj = new JSONObject(trainingContent);
+
+            if(jsonObj.isNull(trainingName))
+                addTrainingObject(trainingName, jsonObj);
+
             JSONObject allTrainingInfo = jsonObj.getJSONObject(trainingName).getJSONObject("moves");
             Iterator<String> moves = allTrainingInfo.keys();
             //Convert information to ArrayList
@@ -90,14 +108,13 @@ public class TrainingsInfoFileHandler extends FileHandler{
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
 
         return trainingInformation;
     }
 
     public Training getTrainingInfoAsTrainingObj(String trainingName){
-        HashMap<String, ArrayList<String>> trainingInformation = getTrainingInformationAsHashMap(trainingName);
+        LinkedHashMap<String, ArrayList<String>> trainingInformation = getTrainingInformationAsHashMap(trainingName);
         return new Training(trainingName, trainingInformation);
     }
 
@@ -131,15 +148,18 @@ public class TrainingsInfoFileHandler extends FileHandler{
     }
 
     private int getSameStartElemCount(String keyStart, JSONObject jsonObject){
-        int elemCount = 0;
+        int elemCount = 1;
         Iterator<String> iterator = jsonObject.keys();
         while(iterator.hasNext()){
             String key = iterator.next();
-
-            int keyLength = keyStart.length();
-            String subStr = key.substring(0, keyLength);
+            int keyStartLength = keyStart.length();
+            String subStr = key.substring(0, keyStartLength);
             if(subStr.equals(keyStart)){
-                elemCount++;
+                if(key.length() > keyStartLength){
+                   if(Character.isDigit(key.charAt(keyStartLength))){
+                        elemCount++;
+                    }
+                }
             }
         }
         return  elemCount;
