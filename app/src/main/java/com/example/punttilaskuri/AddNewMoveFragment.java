@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import androidx.annotation.RequiresApi;
@@ -21,6 +22,7 @@ public class AddNewMoveFragment extends Fragment {
 
     private EditText newMoveNameInput, newMoveTimesInput, newMoveLoopsInput;
     private Button saveMoveButton;
+    private ImageButton deleteMoveButton;
     private Training training;
     private ListView trainingMovesListView;
 
@@ -43,6 +45,7 @@ public class AddNewMoveFragment extends Fragment {
         newMoveLoopsInput = view.findViewById(R.id.newMoveLoopsInput);
 
         saveMoveButton = view.findViewById(R.id.saveMoveButton);
+        deleteMoveButton = view.findViewById(R.id.deleteMoveButton);
 
         boolean isChanging = false;
         String choseMoveName = "";
@@ -57,6 +60,9 @@ public class AddNewMoveFragment extends Fragment {
                 newMoveLoopsInput.setText(movesInformation.get(2));
             }
         }
+
+        if(!isChanging)
+            deleteMoveButton.setEnabled(false);
 
         //Events
         boolean finalIsChanging = isChanging;
@@ -76,34 +82,57 @@ public class AddNewMoveFragment extends Fragment {
                 training.changeMove(finalChoseMoveName, moveName, timesCount, loopsCount);
             }
 
-            TrainingMovesAdapter trainingMovesAdapter = new TrainingMovesAdapter(getContext(), training);
-            trainingMovesListView.setAdapter(trainingMovesAdapter);
-
-            trainingMovesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    String[] movesNamesArray = training.getMovesNamesAsArray();
-                    String choseMoveName = movesNamesArray[i];
-                    AddNewMoveFragment fragment = new AddNewMoveFragment(training, trainingMovesListView);
-                    Bundle bundle = new Bundle();
-                    bundle.putBoolean("isChanging", true);
-                    bundle.putString("choseMoveName", choseMoveName);
-                    fragment.setArguments(bundle);
-
-                    FragmentManager fragmentManager = getFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-                    fragmentTransaction.replace(R.id.moveNamesFrame, fragment);
-                    fragmentTransaction.commit();
-                }
-            });
+            updateListView();
             //Close fragment if it was move changing
             if(finalIsChanging){
                 getFragmentManager().beginTransaction().remove(this).commit();
             }
 
         });
+
+        deleteMoveButton.setOnClickListener(v -> {
+            String moveName = newMoveNameInput.getText().toString();
+            try{
+                training.removeMove(moveName);
+                updateListView();
+            } catch(Exception e){
+                v.setEnabled(false);
+                e.printStackTrace();
+            }
+        });
+
         // Inflate the layout for this fragment
         return view;
+    }
+
+    private void updateListView(){
+        TrainingMovesAdapter trainingMovesAdapter = new TrainingMovesAdapter(getContext(), training);
+        trainingMovesListView.setAdapter(trainingMovesAdapter);
+
+        trainingMovesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String[] movesNamesArray = training.getMovesNamesAsArray();
+                String choseMoveName = movesNamesArray[i];
+                AddNewMoveFragment fragment = new AddNewMoveFragment(training, trainingMovesListView);
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("isChanging", true);
+                bundle.putString("choseMoveName", choseMoveName);
+                fragment.setArguments(bundle);
+
+                FragmentManager fragmentManager = getFragmentManager();
+                if(fragmentManager != null){
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                    fragmentTransaction.replace(R.id.moveNamesFrame, fragment);
+                    fragmentTransaction.commit();
+
+                } else {
+                    System.out.println("------------------");
+                    System.out.println("fragment manager == null");
+                    System.out.println("------------------");
+                }
+            }
+        });
     }
 }

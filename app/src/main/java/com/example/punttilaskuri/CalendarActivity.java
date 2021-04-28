@@ -67,6 +67,10 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
                 Intent nextActivity = new Intent(this, CreatedTrainingsActivity.class);
                 startActivity(nextActivity);
                 break;
+            case R.id.toBMRCalculator:
+                Intent BMRCalculator = new Intent(this, CalorieCalculator.class);
+                startActivity(BMRCalculator);
+                break;
         }
         drawer.closeDrawer(GravityCompat.START);
         return false;
