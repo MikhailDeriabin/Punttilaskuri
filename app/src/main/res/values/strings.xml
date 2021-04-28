@@ -36,7 +36,8 @@
     <string name="bmi_button">BMI</string>
 
     <!-- WeightCalculator -->
-    <string name="height_unit">%s cm</string>
-    <string name="weight_unit">%s Kg</string>
-    <string name="age_unit">%s years</string>
+    <string name="height_unit">%d cm</string>
+    <string name="weight_unit">%d Kg</string>
+    <string name="age_unit">%d years</string>
+    <string name="output">%s Calories/day. </string>
 </resources>

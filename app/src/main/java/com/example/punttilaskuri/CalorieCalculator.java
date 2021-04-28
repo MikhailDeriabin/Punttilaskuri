@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 /**
  * This class is attached to the activity that counts BMR meaning calories for
  * the user when the user has chosen all the parameters he/she desires.
@@ -55,15 +57,15 @@ public class CalorieCalculator extends AppCompatActivity {
                 switch (typeofBar){
                     case HEIGHT:
                         bmrCalc.setHeightCm(progress);
-                        height.setText(progress + " cm");
+                        height.setText(getString(R.string.height_unit, progress));
                         break;
                     case WEIGHT:
                         bmrCalc.setWeightKg(progress);
-                        weight.setText(progress + " Kg");
+                        weight.setText(getString(R.string.weight_unit, progress));
                         break;
                     case AGE:
                         bmrCalc.setAge(progress);
-                        age.setText(progress + " years");
+                        age.setText(getString(R.string.age_unit, progress));
                         break;
                 }
             }
@@ -80,7 +82,7 @@ public class CalorieCalculator extends AppCompatActivity {
         });
     }
     public void onClickCalories(View view){
-        output.setText("You need " + String.format("%.2f",bmrCalc.calculateBmr()) + " Calories/day.");
+        output.setText( getString(R.string.output, String.format(Locale.ENGLISH,"%.2f", bmrCalc.calculateBmr())));
     }
     public void onClickMale(View view){
         bmrCalc.setMale(true);
