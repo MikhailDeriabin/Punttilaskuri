@@ -11,6 +11,13 @@
         android:theme="@style/Theme.Punttilaskuri">
         <activity android:name=".CalorieCalculator"></activity>
         <activity android:name=".TrainingActivity"></activity>
+        <activity android:name=".CalorieCalculator">
+            <intent-filter>
+                <action android:name="com.example.punttilaskuri.CalorieCalculator"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".CreatedTrainingsActivity">
             <intent-filter>
                 <action android:name="com.example.punttilaskuri.CreatedTrainingsActivity" />

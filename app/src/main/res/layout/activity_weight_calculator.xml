@@ -142,7 +142,7 @@
         android:id="@+id/ageNow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ageUnit"
+        android:text="@string/age_unit"
         app:layout_constraintBottom_toBottomOf="@+id/age"
         app:layout_constraintStart_toStartOf="@+id/seekBarAge" />
 
@@ -150,7 +150,7 @@
         android:id="@+id/weightNow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/weightUnit"
+        android:text="@string/weight_unit"
         app:layout_constraintBottom_toBottomOf="@+id/weight"
         app:layout_constraintStart_toStartOf="@+id/seekBarWeight" />
 
@@ -158,7 +158,7 @@
         android:id="@+id/heightNow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/heightUnit"
+        android:text="@string/height_unit"
         app:layout_constraintBottom_toBottomOf="@+id/height"
         app:layout_constraintStart_toStartOf="@+id/seekBarHeight" />
 
@@ -166,7 +166,7 @@
         android:id="@+id/heightMax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/heightMax"
+        android:text="@string/height_unit"
         app:layout_constraintBottom_toBottomOf="@+id/height"
         app:layout_constraintEnd_toEndOf="@+id/seekBarHeight" />
 
@@ -174,7 +174,7 @@
         android:id="@+id/weightMax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/weightMax"
+        android:text="@string/weight_unit"
         app:layout_constraintBottom_toBottomOf="@+id/weight"
         app:layout_constraintEnd_toEndOf="@+id/seekBarWeight" />
 
@@ -182,7 +182,7 @@
         android:id="@+id/ageMax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ageMax"
+        android:text="@string/age_unit"
         app:layout_constraintBottom_toBottomOf="@+id/age"
         app:layout_constraintEnd_toEndOf="@+id/seekBarAge" />
 

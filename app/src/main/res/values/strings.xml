@@ -17,17 +17,13 @@
 
     <!-- common -->
     <string name="backButton">Takaisin</string>
+
+    <!-- WeightCalculator Static -->
     <string name="age_text">Age</string>
     <string name="weight_text">Weight</string>
     <string name="height_text">Height</string>
-    <string name="heightUnit">0 cm</string>
-    <string name="heightMax">250 cm</string>
-    <string name="weightUnit">0 kg</string>
-    <string name="weightMax">300 kg</string>
     <string name="buttonText">Count BMR</string>
     <string name="refreshButton">Refresh</string>
-    <string name="ageUnit">0 years</string>
-    <string name="ageMax">100 years</string>
     <string name="genderText">Gender</string>
     <string name="maleText">Male</string>
     <string name="femaleText">Female</string>
@@ -35,7 +31,7 @@
     <string name="laskurit_text">Laskurit</string>
     <string name="bmi_button">BMI</string>
 
-    <!-- WeightCalculator -->
+    <!-- WeightCalculator non-Static -->
     <string name="height_unit">%d cm</string>
     <string name="weight_unit">%d Kg</string>
     <string name="age_unit">%d years</string>
