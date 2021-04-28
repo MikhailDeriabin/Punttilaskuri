@@ -5,4 +5,8 @@
         android:id="@+id/showTrainingsButton"
         android:title="@string/calendarActivity_drawer_showTrainingsButton"
         />
+    <item
+        android:id="@+id/toBMRCalculator"
+        android:title="@string/calendarActivity_drawer_toBMRCalculator"
+        />
 </menu>
