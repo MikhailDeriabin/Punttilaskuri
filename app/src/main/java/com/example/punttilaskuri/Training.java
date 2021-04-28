@@ -1,5 +1,9 @@
 package com.example.punttilaskuri;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -34,10 +38,14 @@ public class Training {
     }
 
     // ! moveName is key value
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void changeMove(String moveName, String newName, String times, String loops){
         if(!isTrainingEmpty){
-            removeMove(moveName);
-            addMove(newName, times, loops);
+            ArrayList<String> moveInformationArrayList = new ArrayList<>();
+            moveInformationArrayList.add(newName);
+            moveInformationArrayList.add(times);
+            moveInformationArrayList.add(loops);
+            this.movesInformation.replace(moveName, moveInformationArrayList);
         }
     }
 
@@ -53,7 +61,7 @@ public class Training {
         trainingName = newName;
     }
 
-    public HashMap<String, ArrayList<String>> getTrainingInformation(){
+    public LinkedHashMap<String, ArrayList<String>> getTrainingInformation(){
         return movesInformation;
     }
 
@@ -69,16 +77,9 @@ public class Training {
     }
 
     public String[] getUserReadableMovesNamesAsArray(){
-        Set<String> moveNames = getMovesNames();
-        String[] result = new String[moveNames.size()];
-        if(!isTrainingEmpty){
-            int i = 0;
-            for(String move : moveNames){
-                result[i] = movesInformation.get(move).get(0);
-                i++;
-            }
-        }
-        return result;
+        if(!isTrainingEmpty)
+            return getUserReadableMovesNames().toArray(new String[0]);
+        return new String[0];
     }
 
     public Set<String> getMovesNames(){
@@ -88,19 +89,9 @@ public class Training {
     }
 
     public String[] getMovesNamesAsArray(){
-        if(!isTrainingEmpty){
-            Set<String> movesNames = getMovesNames();
-            int moveCount = movesNames.size();
-            String[] movesNamesArray = new String[moveCount];
-
-            int i = 0;
-            for(String moveName : movesNames){
-                movesNamesArray[i] = moveName;
-                i++;
-            }
-            return movesNamesArray;
-        }
-        return null;
+        if(!isTrainingEmpty)
+            return getMovesNames().toArray(new String[0]);
+        return new String[0];
     }
 
     //Technical methods
@@ -109,9 +100,11 @@ public class Training {
         if(!isTrainingEmpty){
             for(String elem : arrayList){
                 int keyLength = keyStart.length();
-                String subStr = elem.substring(0, keyLength);
-                if(subStr.equals(keyStart)){
-                    elemCount++;
+                if(keyLength <= elem.length()){
+                    String subStr = elem.substring(0, keyLength);
+                    if(subStr.equals(keyStart)){
+                        elemCount++;
+                    }
                 }
             }
         }

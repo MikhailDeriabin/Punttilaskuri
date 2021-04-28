@@ -8,27 +8,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
-import com.example.punttilaskuri.fileHandlers.MovesInfoFileHandler;
 import com.example.punttilaskuri.fileHandlers.TrainingsInfoFileHandler;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
+import java.util.LinkedHashMap;
 
 public class TrainingActivity extends AppCompatActivity {
 
     private EditText trainingNameInput;
-    private Button addTrainingMoveButton, saveTrainingButton;
+    private Button addTrainingMoveButton, chooseMoveButton;
+    private ImageButton saveTrainingButton;
     public Training training;
-    private ListView trainingMovesListView, movesNamesListView;
+    private ListView trainingMovesListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,59 +42,62 @@ public class TrainingActivity extends AppCompatActivity {
         trainingMovesListView = findViewById(R.id.trainingMovesListView);
         addTrainingMoveButton = findViewById(R.id.addTrainingMoveButton);
         saveTrainingButton = findViewById(R.id.saveTrainingButton);
-        movesNamesListView = findViewById(R.id.movesNamesListView);
+        chooseMoveButton = findViewById(R.id.chooseMoveButton);
 
         TrainingsInfoFileHandler trainingsInfoFileHandler = new TrainingsInfoFileHandler(this);
         trainingNameInput.setText(trainingName);
 
-        training = trainingsInfoFileHandler.getTrainingInfoAsTrainingObj(trainingName);
-
         if(!isNewTraining){
-            String[] movesNames = training.getUserReadableMovesNames().toArray(new String[0]);
+            training = trainingsInfoFileHandler.getTrainingInfoAsTrainingObj(trainingName);
+            //displayed items
+            HashMap<String, ArrayList<String>> moves = training.getTrainingInformation();
 
-            if(movesNames != null && movesNames.length > 0){
-                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.list_view_training_added_moves, R.id.addedMoveTV, movesNames);
-                trainingMovesListView.setAdapter(arrayAdapter);
 
-            /*trainingMovesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Intent nextActivity = new Intent(CreatedTrainingsActivity.this, TrainingActivity.class);
-                    nextActivity.putExtra("isNewTraining", false);
-                    nextActivity.putExtra("trainingName", movesNames[i]);
-                    startActivity(nextActivity);
-                }
-            });*/
+            if(moves != null && moves.size() > 0){
+                TrainingMovesAdapter trainingMovesAdapter = new TrainingMovesAdapter(this, training);
+                trainingMovesListView.setAdapter(trainingMovesAdapter);
+
+                trainingMovesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        String[] movesNamesArray = training.getMovesNamesAsArray();
+                        String choseMoveName = movesNamesArray[i];
+                        AddNewMoveFragment fragment = new AddNewMoveFragment(training, trainingMovesListView);
+                        Bundle bundle = new Bundle();
+                        bundle.putBoolean("isChanging", true);
+                        bundle.putString("choseMoveName", choseMoveName);
+                        fragment.setArguments(bundle);
+
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                        fragmentTransaction.replace(R.id.moveNamesFrame, fragment);
+                        fragmentTransaction.commit();
+                    }
+                });
             }
-        }
-
-
-        // Predefined moves
-        MovesInfoFileHandler movesInfoFileHandler = new MovesInfoFileHandler(this);
-        String[] moves = movesInfoFileHandler.getMovesNamesAsArray();
-
-        if(moves.length > 0){
-            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.list_view_moves_names, R.id.moveNameTV, moves);
-            movesNamesListView.setAdapter(arrayAdapter);
-
-            /*movesNamesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Intent nextActivity = new Intent(CreatedTrainingsActivity.this, TrainingActivity.class);
-                    nextActivity.putExtra("isNewTraining", false);
-                    nextActivity.putExtra("trainingName", movesNames[i]);
-                    startActivity(nextActivity);
-                }
-            });*/
+        } else{
+            trainingNameInput.setSelectAllOnFocus(true);
+            training = new Training(trainingName, new LinkedHashMap<String, ArrayList<String>>());
         }
 
 
         addTrainingMoveButton.setOnClickListener( v -> {
             //send data to fragment
-            AddNewMoveFragment fragment = new AddNewMoveFragment(training);
-            Bundle bundle = new Bundle();
-            bundle.putBoolean("isNewTraining", isNewTraining);
-            fragment.setArguments(bundle);
+            AddNewMoveFragment fragment = new AddNewMoveFragment(training, trainingMovesListView);
+
+            //get all fragments
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+            //change fragment
+            fragmentTransaction.replace(R.id.moveNamesFrame, fragment);
+            fragmentTransaction.commit();
+        });
+
+        chooseMoveButton.setOnClickListener( v -> {
+            //send data to fragment
+            ChooseMoveFragment fragment = new ChooseMoveFragment(training, trainingMovesListView);
 
             //get all fragments
             FragmentManager fragmentManager = getSupportFragmentManager();
