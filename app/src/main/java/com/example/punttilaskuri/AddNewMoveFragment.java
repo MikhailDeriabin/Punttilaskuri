@@ -1,19 +1,19 @@
 package com.example.punttilaskuri;
 
-import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
-
-import com.example.punttilaskuri.fileHandlers.TrainingsInfoFileHandler;
-
-import org.json.JSONArray;
-import org.json.JSONException;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 
@@ -22,11 +22,14 @@ public class AddNewMoveFragment extends Fragment {
     private EditText newMoveNameInput, newMoveTimesInput, newMoveLoopsInput;
     private Button saveMoveButton;
     private Training training;
+    private ListView trainingMovesListView;
 
-    public AddNewMoveFragment(Training training){
+    public AddNewMoveFragment(Training training, ListView trainingMovesListView){
         this.training = training;
+        this.trainingMovesListView = trainingMovesListView;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,13 +44,64 @@ public class AddNewMoveFragment extends Fragment {
 
         saveMoveButton = view.findViewById(R.id.saveMoveButton);
 
+        boolean isChanging = false;
+        String choseMoveName = "";
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            isChanging = bundle.getBoolean("isChanging", false);
+            choseMoveName = bundle.getString("choseMoveName");
+            ArrayList<String> movesInformation = training.getTrainingInformation().get(choseMoveName);
+            if(movesInformation != null){
+                newMoveNameInput.setText(movesInformation.get(0));
+                newMoveTimesInput.setText(movesInformation.get(1));
+                newMoveLoopsInput.setText(movesInformation.get(2));
+            }
+        }
+
         //Events
+        boolean finalIsChanging = isChanging;
+        String finalChoseMoveName = choseMoveName;
         saveMoveButton.setOnClickListener(v -> {
             String moveName = newMoveNameInput.getText().toString();
             String timesCount = newMoveTimesInput.getText().toString();
             String loopsCount = newMoveLoopsInput.getText().toString();
 
-            training.addMove(moveName, timesCount, loopsCount);
+            newMoveNameInput.setText("");
+            newMoveTimesInput.setText("");
+            newMoveLoopsInput.setText("");
+
+            if(!finalIsChanging){
+                training.addMove(moveName, timesCount, loopsCount);
+            } else {
+                training.changeMove(finalChoseMoveName, moveName, timesCount, loopsCount);
+            }
+
+            TrainingMovesAdapter trainingMovesAdapter = new TrainingMovesAdapter(getContext(), training);
+            trainingMovesListView.setAdapter(trainingMovesAdapter);
+
+            trainingMovesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    String[] movesNamesArray = training.getMovesNamesAsArray();
+                    String choseMoveName = movesNamesArray[i];
+                    AddNewMoveFragment fragment = new AddNewMoveFragment(training, trainingMovesListView);
+                    Bundle bundle = new Bundle();
+                    bundle.putBoolean("isChanging", true);
+                    bundle.putString("choseMoveName", choseMoveName);
+                    fragment.setArguments(bundle);
+
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                    fragmentTransaction.replace(R.id.moveNamesFrame, fragment);
+                    fragmentTransaction.commit();
+                }
+            });
+            //Close fragment if it was move changing
+            if(finalIsChanging){
+                getFragmentManager().beginTransaction().remove(this).commit();
+            }
+
         });
         // Inflate the layout for this fragment
         return view;

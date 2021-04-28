@@ -54,7 +54,7 @@ public class TrainingsInfoFileHandler extends FileHandler{
             trainingContent = "{}";
 
         JSONObject rootObject = new JSONObject(trainingContent);
-        if(isNewTraining && !rootObject.isNull(trainingName)){
+        if(!rootObject.isNull(trainingName)){
             int keyCount = getSameStartElemCount(trainingName, rootObject);
             trainingName += Integer.toString(keyCount);
         }
@@ -62,15 +62,15 @@ public class TrainingsInfoFileHandler extends FileHandler{
         //If for this day is not any notes or trainings, create object for this day(see file structure above)
         if(rootObject.isNull(trainingName))
             addTrainingObject(trainingName, rootObject);
+        if(movesNames != null){
+            rootObject.getJSONObject(trainingName).remove("moves");
+            rootObject.getJSONObject(trainingName).put("moves", new JSONObject("{}"));
+            JSONObject trainingMoves =  rootObject.getJSONObject(trainingName).getJSONObject("moves");
 
-        rootObject.getJSONObject(trainingName).remove("moves");
-        rootObject.getJSONObject(trainingName).put("moves", new JSONObject("{}"));
-        JSONObject trainingMoves =  rootObject.getJSONObject(trainingName).getJSONObject("moves");
-
-        for(String moveName : movesNames){
-            trainingMoves.put(moveName, new JSONArray(trainingInformation.get(moveName)));
+                for(String moveName : movesNames){
+                    trainingMoves.put(moveName, new JSONArray(trainingInformation.get(moveName)));
+                }
         }
-
         saveDataToFile(fileName, rootObject.toString());
     }
 
