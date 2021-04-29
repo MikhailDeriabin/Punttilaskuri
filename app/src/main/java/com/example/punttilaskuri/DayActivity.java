@@ -11,6 +11,8 @@ import com.example.punttilaskuri.fileHandlers.NotesHandler;
 
 import org.json.JSONException;
 
+import java.io.UnsupportedEncodingException;
+
 public class DayActivity extends AppCompatActivity {
 
     // UI elements
@@ -38,7 +40,12 @@ public class DayActivity extends AppCompatActivity {
         dateTV.setText(choseDate);
 
         NotesHandler notesHandler = new NotesHandler(this);
-        String userNotes = notesHandler.getDayInformationAsString(choseDate);
+        String userNotes = null;
+        try {
+            userNotes = notesHandler.getDayInformationAsString(choseDate);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         jsonFileTV.setText(userNotes);
 
         //Events
@@ -46,17 +53,27 @@ public class DayActivity extends AppCompatActivity {
             String userInput = noteInputField.getText().toString();
             try {
                 notesHandler.addInformation(choseDate, userInput);
-            } catch (JSONException e) {
+            } catch (JSONException | UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
 
-            String allNotes = notesHandler.getDayInformationAsString(choseDate);
+            String allNotes = null;
+            try {
+                allNotes = notesHandler.getDayInformationAsString(choseDate);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
             jsonFileTV.setText(allNotes);
         });
 
         jsonFileTV.setOnClickListener( v -> {
             notesHandler.removeOneItem(choseDate, 0);
-            String allNotes = notesHandler.getDayInformationAsString(choseDate);
+            String allNotes = null;
+            try {
+                allNotes = notesHandler.getDayInformationAsString(choseDate);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
             jsonFileTV.setText(allNotes);
         });
 

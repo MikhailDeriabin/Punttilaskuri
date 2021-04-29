@@ -17,6 +17,7 @@ import com.example.punttilaskuri.fileHandlers.TrainingsInfoFileHandler;
 
 import org.json.JSONException;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -115,9 +116,14 @@ public class TrainingActivity extends AppCompatActivity {
                 if(!isNewTraining){
                     trainingsInfoFileHandler.removeTraining(trainingName);
                 }
+                UserInputChecker userInputChecker = new UserInputChecker();
+                newTrainingName = userInputChecker.removeSpecialCharacters(newTrainingName);
+                if(newTrainingName.equals("")){
+                    newTrainingName = "New training";
+                }
                 training.setTrainingName(newTrainingName);
                 trainingsInfoFileHandler.rewriteTrainingByTrainingObject(training, isNewTraining);
-            } catch (JSONException e) {
+            } catch (JSONException | UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
 
@@ -128,7 +134,7 @@ public class TrainingActivity extends AppCompatActivity {
         deleteTrainingButton.setOnClickListener(v -> {
             try{
                 trainingsInfoFileHandler.removeTraining(trainingName);
-            } catch(JSONException e){
+            } catch(JSONException | UnsupportedEncodingException e){
                 e.printStackTrace();
             }
             Intent nextActivity = new Intent(this, CreatedTrainingsActivity.class);

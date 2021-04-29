@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.Set;
 
 public class TrainingMovesAdapter extends BaseAdapter {
     private LayoutInflater layoutInflater;
@@ -49,6 +48,7 @@ public class TrainingMovesAdapter extends BaseAdapter {
         TextView addedMoveLoopsTV = convertView.findViewById(R.id.addedMoveLoopsTV);
 
         String moveName = movesNames[position];
+
         addedMoveNameTV.setText(movesInformation.get(moveName).get(0));
         addedMoveTimesTV.setText(movesInformation.get(moveName).get(1));
         addedMoveLoopsTV.setText(movesInformation.get(moveName).get(2));

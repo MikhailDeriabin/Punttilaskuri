@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -22,7 +23,7 @@ public class TrainingsInfoFileHandler extends FileHandler{
     }
 
     //add one "item" of defined content type, like some note to notes array (see file structure above)
-    public void addMove(String trainingName, String moveName, JSONArray moveInformation) throws JSONException {
+    public void addMove(String trainingName, String moveName, JSONArray moveInformation) throws JSONException, UnsupportedEncodingException {
         //get all content of the file in string
         String trainingContent = readData(fileName);
         //if file doesn't content anything or exists, create new one with empty JSON object
@@ -44,7 +45,7 @@ public class TrainingsInfoFileHandler extends FileHandler{
         saveDataToFile(fileName, rootObject.toString());
     }
 
-    public void rewriteTrainingByTrainingObject(Training trainingObj, boolean isNewTraining) throws JSONException{
+    public void rewriteTrainingByTrainingObject(Training trainingObj, boolean isNewTraining) throws JSONException, UnsupportedEncodingException {
         String trainingName = trainingObj.getTrainingName();
         HashMap<String, ArrayList<String>> trainingInformation = trainingObj.getTrainingInformation();
         Set<String> movesNames = trainingObj.getMovesNames();
@@ -74,7 +75,7 @@ public class TrainingsInfoFileHandler extends FileHandler{
         saveDataToFile(fileName, rootObject.toString());
     }
 
-    public void removeTraining(String trainingName) throws JSONException{
+    public void removeTraining(String trainingName) throws JSONException, UnsupportedEncodingException {
         String trainingContent = readData(fileName);
         JSONObject rootObject = new JSONObject(trainingContent);
         rootObject.remove(trainingName);
