@@ -25,7 +25,7 @@ public class TrainingActivity extends AppCompatActivity {
 
     private EditText trainingNameInput;
     private Button addTrainingMoveButton, chooseMoveButton;
-    private ImageButton saveTrainingButton;
+    private ImageButton saveTrainingButton, deleteTrainingButton;
     public Training training;
     private ListView trainingMovesListView;
 
@@ -43,6 +43,7 @@ public class TrainingActivity extends AppCompatActivity {
         addTrainingMoveButton = findViewById(R.id.addTrainingMoveButton);
         saveTrainingButton = findViewById(R.id.saveTrainingButton);
         chooseMoveButton = findViewById(R.id.chooseMoveButton);
+        deleteTrainingButton = findViewById(R.id.deleteTrainingButton);
 
         TrainingsInfoFileHandler trainingsInfoFileHandler = new TrainingsInfoFileHandler(this);
         trainingNameInput.setText(trainingName);
@@ -120,6 +121,16 @@ public class TrainingActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
+            Intent nextActivity = new Intent(this, CreatedTrainingsActivity.class);
+            startActivity(nextActivity);
+        });
+
+        deleteTrainingButton.setOnClickListener(v -> {
+            try{
+                trainingsInfoFileHandler.removeTraining(trainingName);
+            } catch(JSONException e){
+                e.printStackTrace();
+            }
             Intent nextActivity = new Intent(this, CreatedTrainingsActivity.class);
             startActivity(nextActivity);
         });

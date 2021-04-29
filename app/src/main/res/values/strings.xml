@@ -10,6 +10,7 @@
     <string name="calendarActivity_drawer_open">päävalikko on auki</string>
     <string name="calendarActivity_drawer_close">päävalikko on kiini</string>
     <string name="calendarActivity_drawer_showTrainingsButton">Harjoitukset</string>
+    <string name="calendarActivity_drawer_toBMRCalculator">BMR laskuri</string>
 
     <!-- dayActivity -->
     <string name="dayActivity_noteInputField">muistiinpano</string>
