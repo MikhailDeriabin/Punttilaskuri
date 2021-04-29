@@ -1,10 +1,12 @@
 package com.example.punttilaskuri.fileHandlers;
 
 import android.content.Context;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 //This class is parent for NotesHandler and TrainingsNamesHandler classes
@@ -30,7 +32,7 @@ public class DaysInfoFileHandler extends FileHandler {
     }
 
     //add one "item" of defined content type, like some note to notes array (see file structure above)
-    public void addInformation(String date, String newInformation) throws JSONException {
+    public void addInformation(String date, String newInformation) throws JSONException, UnsupportedEncodingException {
         //get all content of the file in string
         String daysInfoContent = readData(fileName);
         //if file doesn't content anything or exists, create new one with empty JSON object
@@ -49,7 +51,7 @@ public class DaysInfoFileHandler extends FileHandler {
     }
 
     //Get information (only about chose type notes or trainings) for chose day in String
-    public String getDayInformationAsString(String date){
+    public String getDayInformationAsString(String date) throws UnsupportedEncodingException {
         String dayInformation = "";
         try {
             JSONObject jsonObj = new JSONObject(readData(fileName));
@@ -57,7 +59,7 @@ public class DaysInfoFileHandler extends FileHandler {
             int notesCount = allContentTypeInfo.length();
             //Convert information to String, where each item starts with new line
             for(int i = 0; i < notesCount; i++){
-                dayInformation += allContentTypeInfo.getString(i) + "\n";
+                dayInformation += allContentTypeInfo.getString(i);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -138,7 +140,7 @@ public class DaysInfoFileHandler extends FileHandler {
                 dayInformationArray.put(item);
             }
             saveDataToFile(fileName, jsonObject.toString());
-        } catch (JSONException e) {
+        } catch (JSONException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }

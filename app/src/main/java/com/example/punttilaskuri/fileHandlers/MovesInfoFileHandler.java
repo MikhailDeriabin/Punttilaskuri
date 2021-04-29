@@ -5,10 +5,12 @@ import android.content.Context;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+
 public class MovesInfoFileHandler extends FileHandler{
     private final String fileName = "movesInfo.json";
     String movesNames;
-    public MovesInfoFileHandler(Context context){
+    public MovesInfoFileHandler(Context context) throws UnsupportedEncodingException {
         super(context);
         movesNames = readData(fileName);
     }

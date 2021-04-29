@@ -12,9 +12,6 @@ import android.widget.ListView;
 
 import com.example.punttilaskuri.fileHandlers.TrainingsInfoFileHandler;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public class CreatedTrainingsActivity extends AppCompatActivity {
 
     private Button addTrainingButton;

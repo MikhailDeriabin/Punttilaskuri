@@ -7,7 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 
 //This is a parent class for all file handlers
 //It saves and reads information from file
@@ -39,15 +39,14 @@ public class FileHandler {
     }
 
     //reads data from file
-    public String readData(String fileName){
-        String text = "";
+    public String readData(String fileName) throws UnsupportedEncodingException {
+        StringBuilder text = new StringBuilder();
         FileInputStream fis = null;
         try {
             fis = context.openFileInput(fileName);
-            InputStreamReader isr = new InputStreamReader(fis);
             int count;
             while ((count = fis.read()) !=-1) {
-                text += Character.toString((char)count);
+                text.append(Character.toString((char) count));
             }
 
         } catch (FileNotFoundException e) {
@@ -63,7 +62,8 @@ public class FileHandler {
                 }
             }
         }
-        return text;
+
+        return text.toString();
     }
 
     public boolean isFileExist(String path){

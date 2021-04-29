@@ -4,9 +4,13 @@
     <item
         android:id="@+id/showTrainingsButton"
         android:title="@string/calendarActivity_drawer_showTrainingsButton"
+        android:textColor="#000000"
+        android:textSize="30sp"
         />
     <item
         android:id="@+id/toBMRCalculator"
         android:title="@string/calendarActivity_drawer_toBMRCalculator"
+        android:textColor="#000000"
+        android:textSize="30sp"
         />
 </menu>
