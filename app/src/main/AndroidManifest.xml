@@ -9,7 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Punttilaskuri">
-        <activity android:name=".CalorieCalculator"></activity>
         <activity android:name=".TrainingActivity"></activity>
         <activity android:name=".CalorieCalculator">
             <intent-filter>
