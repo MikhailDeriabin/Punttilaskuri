@@ -79,6 +79,7 @@ public class TrainingActivity extends AppCompatActivity {
                 });
             }
         } else{
+            deleteTrainingButton.setEnabled(false);
             trainingNameInput.setSelectAllOnFocus(true);
             training = new Training(trainingName, new LinkedHashMap<String, ArrayList<String>>());
         }

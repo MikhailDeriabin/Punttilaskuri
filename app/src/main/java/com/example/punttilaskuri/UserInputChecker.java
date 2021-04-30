@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserInputChecker {
-    private final String specialCharactersString = "!@#$%&*()'+,-./:;<=>?[]^_`{|}¤£½¶©±äöÄÖ";
+    private final String specialCharactersString = "!@#$%&*()'+,./:;<=>?[]^_`{|}¤£½¶©±äöÄÖ";
 
     public String removeSpecialCharacters(String string){
         StringBuilder newString = new StringBuilder();

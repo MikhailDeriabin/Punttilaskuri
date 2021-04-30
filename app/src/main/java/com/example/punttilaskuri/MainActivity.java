@@ -25,25 +25,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FileHandler fileHandler = new FileHandler(this);
-
-        if(!fileHandler.isFileExist("movesInfo.json")){
-            String moveNames = null;
-            InputStream is = null;
-            try {
-                AssetManager manager = getAssets();
-                is = manager.open("movesPref.json");
-                int size = is.available();
-                byte[] buffer = new byte[size];
-                is.read(buffer);
-                is.close();
-                moveNames = new String(buffer, StandardCharsets.UTF_8);
-                fileHandler.saveDataToFile("movesInfo.json", moveNames);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-
         calendarButton = findViewById(R.id.calendarButton);
         calculatorButton = findViewById(R.id.calculatorButton);
 

@@ -140,7 +140,7 @@ public class DaysInfoFileHandler extends FileHandler {
                 dayInformationArray.put(item);
             }
             saveDataToFile(fileName, jsonObject.toString());
-        } catch (JSONException | UnsupportedEncodingException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }

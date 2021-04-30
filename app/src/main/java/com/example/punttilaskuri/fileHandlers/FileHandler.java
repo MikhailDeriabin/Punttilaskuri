@@ -39,7 +39,7 @@ public class FileHandler {
     }
 
     //reads data from file
-    public String readData(String fileName) throws UnsupportedEncodingException {
+    public String readData(String fileName) {
         StringBuilder text = new StringBuilder();
         FileInputStream fis = null;
         try {

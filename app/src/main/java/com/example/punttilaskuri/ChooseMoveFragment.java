@@ -43,12 +43,7 @@ public class ChooseMoveFragment extends Fragment {
         movesNamesListView = view.findViewById(R.id.movesNamesListView);
 
         // Predefined moves
-        MovesInfoFileHandler movesInfoFileHandler = null;
-        try {
-            movesInfoFileHandler = new MovesInfoFileHandler(getContext());
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        MovesInfoFileHandler movesInfoFileHandler = new MovesInfoFileHandler(getContext());
         String[] moves = movesInfoFileHandler.getMovesNamesAsArray();
 
         if(moves.length > 0){
