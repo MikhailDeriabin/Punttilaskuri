@@ -123,8 +123,8 @@ public class TrainingActivity extends AppCompatActivity {
                     newTrainingName = "New training";
                 }
                 training.setTrainingName(newTrainingName);
-                trainingsInfoFileHandler.rewriteTrainingByTrainingObject(training, isNewTraining);
-            } catch (JSONException | UnsupportedEncodingException e) {
+                trainingsInfoFileHandler.rewriteTrainingByTrainingObject(training);
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
 
@@ -133,11 +133,7 @@ public class TrainingActivity extends AppCompatActivity {
         });
 
         deleteTrainingButton.setOnClickListener(v -> {
-            try{
-                trainingsInfoFileHandler.removeTraining(trainingName);
-            } catch(JSONException | UnsupportedEncodingException e){
-                e.printStackTrace();
-            }
+            trainingsInfoFileHandler.removeTraining(trainingName);
             Intent nextActivity = new Intent(this, CreatedTrainingsActivity.class);
             startActivity(nextActivity);
         });

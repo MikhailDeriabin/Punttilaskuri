@@ -41,11 +41,7 @@ public class DayActivity extends AppCompatActivity {
 
         NotesHandler notesHandler = new NotesHandler(this);
         String userNotes = null;
-        try {
-            userNotes = notesHandler.getDayInformationAsString(choseDate);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        userNotes = notesHandler.getDayInformationAsString(choseDate);
         jsonFileTV.setText(userNotes);
 
         //Events
@@ -53,27 +49,19 @@ public class DayActivity extends AppCompatActivity {
             String userInput = noteInputField.getText().toString();
             try {
                 notesHandler.addInformation(choseDate, userInput);
-            } catch (JSONException | UnsupportedEncodingException e) {
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             String allNotes = null;
-            try {
-                allNotes = notesHandler.getDayInformationAsString(choseDate);
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
+            allNotes = notesHandler.getDayInformationAsString(choseDate);
             jsonFileTV.setText(allNotes);
         });
 
         jsonFileTV.setOnClickListener( v -> {
             notesHandler.removeOneItem(choseDate, 0);
             String allNotes = null;
-            try {
-                allNotes = notesHandler.getDayInformationAsString(choseDate);
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
+            allNotes = notesHandler.getDayInformationAsString(choseDate);
             jsonFileTV.setText(allNotes);
         });
 
