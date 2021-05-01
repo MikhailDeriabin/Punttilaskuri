@@ -12,13 +12,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="move name"
+        android:hint="@string/fragmentNewMoveAdding_moveNameInput"
         android:inputType="textPersonName"
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="false"/>
 
     <EditText
         android:id="@+id/newMoveTimesInput"
@@ -28,13 +29,14 @@
         android:layout_marginLeft="32dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="times"
+        android:hint="@string/fragmentNewMoveAdding_moveTimesInput"
         android:inputType="number"
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newMoveNameInput" />
+        app:layout_constraintTop_toBottomOf="@+id/newMoveNameInput"
+        android:autofillHints="false"/>
 
     <EditText
         android:id="@+id/newMoveLoopsInput"
@@ -44,19 +46,20 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:ems="10"
-        android:hint="loops"
+        android:hint="@string/fragmentNewMoveAdding_moveLoopsInput"
         android:inputType="number"
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
-        app:layout_constraintTop_toBottomOf="@+id/newMoveNameInput" />
+        app:layout_constraintTop_toBottomOf="@+id/newMoveNameInput"
+        android:autofillHints="false"/>
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="x"
+        android:text="@string/xTV"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/saveMoveButton"
         app:layout_constraintEnd_toStartOf="@+id/newMoveLoopsInput"
@@ -81,7 +84,8 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newMoveTimesInput"
-        app:srcCompat="@android:drawable/ic_menu_delete" />
+        app:srcCompat="@android:drawable/ic_menu_delete"
+        android:contentDescription="@string/fragmentNewMoveAdding_deleteMoveIButton"/>
 
     <ImageButton
         android:id="@+id/saveMoveButton"
@@ -92,6 +96,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
         app:layout_constraintTop_toBottomOf="@+id/newMoveLoopsInput"
-        app:srcCompat="@android:drawable/ic_menu_save" />
+        app:srcCompat="@android:drawable/ic_menu_save"
+        android:contentDescription="@string/fragmentNewMoveAdding_saveMoveIButton"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

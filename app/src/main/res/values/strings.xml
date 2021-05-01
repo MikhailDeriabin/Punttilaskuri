@@ -7,8 +7,8 @@
 
     <!-- calendarActivity -->
     <string name="calendarActivity_menuButton">menu button</string>
-    <string name="calendarActivity_drawer_open">Mainmenu is open</string>
-    <string name="calendarActivity_drawer_close">Mainmenu is closed</string>
+    <string name="calendarActivity_drawer_open">Main menu is open</string>
+    <string name="calendarActivity_drawer_close">Main menu is closed</string>
     <string name="calendarActivity_drawer_showTrainingsButton">Practices</string>
     <string name="calendarActivity_drawer_toBMRCalculator">BMR Counter</string>
 
@@ -16,8 +16,26 @@
     <string name="dayActivity_noteInputField">Note</string>
     <string name="dayActivity_addNoteButton">Add a Note</string>
 
+    <!-- trainingActivity -->
+    <string name="trainingActivity_deleteTrainingButton">delete training</string>
+    <string name="trainingActivity_trainingNameInput">training name</string>
+    <string name="trainingActivity_saveTrainingIButton">save training</string>
+    <string name="trainingActivity_chooseMoveButton">choose move</string>
+    <string name="trainingActivity_addTrainingMoveButton">add new move</string>
+
+    <!-- createdTrainingsActivity -->
+    <string name="createdTrainingsActivity_addTrainingButton">create training</string>
+
+    <!-- fragmentNewMoveAdding -->
+    <string name="fragmentNewMoveAdding_moveNameInput">move name</string>
+    <string name="fragmentNewMoveAdding_moveTimesInput">times</string>
+    <string name="fragmentNewMoveAdding_moveLoopsInput">loops</string>
+    <string name="fragmentNewMoveAdding_deleteMoveIButton">delete move</string>
+    <string name="fragmentNewMoveAdding_saveMoveIButton">save move</string>
+
     <!-- common -->
     <string name="backButton">Back</string>
+    <string name="xTV">x</string>
 
 
     <string name="bmr_button">BMR</string>
