@@ -70,6 +70,7 @@
         android:layout_width="44dp"
         android:layout_height="36dp"
         android:text="@string/age_text"
+        android:gravity="center"
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/seekBarAge"
@@ -81,6 +82,7 @@
         android:layout_width="74dp"
         android:layout_height="39dp"
         android:text="@string/weight_text"
+        android:gravity="center"
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/seekBarWeight"
@@ -89,9 +91,10 @@
 
     <TextView
         android:id="@+id/weight2"
-        android:layout_width="78dp"
-        android:layout_height="37dp"
+        android:layout_width="113dp"
+        android:layout_height="38dp"
         android:text="@string/genderText"
+        android:gravity="center"
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/radioGroup"
@@ -103,6 +106,7 @@
         android:layout_width="72dp"
         android:layout_height="32dp"
         android:text="@string/height_text"
+        android:gravity="center"
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/seekBarHeight"
@@ -218,6 +222,7 @@
             android:layout_width="match_parent"
             android:layout_height="27dp"
             android:checked="true"
+            android:gravity="center"
             android:onClick="onClickMale"
             android:text="@string/maleText"
             android:textColor="@android:color/secondary_text_light" />
@@ -226,6 +231,7 @@
             android:id="@+id/radioButtonFemale"
             android:layout_width="match_parent"
             android:layout_height="29dp"
+            android:gravity="center"
             android:onClick="onClickFemale"
             android:text="@string/femaleText"
             android:textColor="@color/ic_launcher_background" />

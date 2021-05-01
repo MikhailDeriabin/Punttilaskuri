@@ -24,9 +24,14 @@ public class CalculatorActivity extends AppCompatActivity {
     }
 
     public void calculatorButtons(View view){
-        if(view == findViewById(R.id.bmr_enter)){
-            Intent caloryCalc = new Intent(this, CalorieCalculator.class);
-            startActivity(caloryCalc);
+        if(view == findViewById(R.id.bmrEnter)){
+            Intent calorieCalc = new Intent(this, CalorieCalculator.class);
+            startActivity(calorieCalc);
+        } else if(view == view.findViewById(R.id.metEnter)){
+            Intent exerciseCalorieCalc = new Intent(this, ExerciseCalories.class);
+            startActivity(exerciseCalorieCalc);
+        } else if(view == view.findViewById(R.id.infoEnter)){
+
         }
     }
 }

@@ -1,40 +1,49 @@
 <resources>
     <!-- mainActivity -->
-    <string name="app_name">Punttilaskuri</string>
-    <string name="mainActivity_title">Tervetuloa,\nvalitse toiminto:</string>
-    <string name="mainActivity_calendarButton">Kalenteri</string>
-    <string name="mainActivity_calculatorButton">Laskurit</string>
+    <string name="app_name">ExerciseMemo</string>
+    <string name="mainActivity_title">Welcome,\nchoose an action:</string>
+    <string name="mainActivity_calendarButton">Calendars</string>
+    <string name="mainActivity_calculatorButton">Calculators</string>
 
     <!-- calendarActivity -->
-    <string name="calendarActivity_menuButton">valikko näppäin</string>
-    <string name="calendarActivity_drawer_open">päävalikko on auki</string>
-    <string name="calendarActivity_drawer_close">päävalikko on kiini</string>
-    <string name="calendarActivity_drawer_showTrainingsButton">Harjoitukset</string>
-    <string name="calendarActivity_drawer_toBMRCalculator">BMR laskuri</string>
+    <string name="calendarActivity_menuButton">menu button</string>
+    <string name="calendarActivity_drawer_open">Mainmenu is open</string>
+    <string name="calendarActivity_drawer_close">Mainmenu is closed</string>
+    <string name="calendarActivity_drawer_showTrainingsButton">Practices</string>
+    <string name="calendarActivity_drawer_toBMRCalculator">BMR Counter</string>
 
     <!-- dayActivity -->
-    <string name="dayActivity_noteInputField">muistiinpano</string>
-    <string name="dayActivity_addNoteButton">lisää muistiinpano</string>
+    <string name="dayActivity_noteInputField">Note</string>
+    <string name="dayActivity_addNoteButton">Add a Note</string>
 
     <!-- common -->
-    <string name="backButton">Takaisin</string>
+    <string name="backButton">Back</string>
+
+
+    <string name="bmr_button">BMR</string>
+    <string name="laskuri_info">Info</string>
+    <string name="laskurit_text">Calculators</string>
+    <string name="Exercise_button">MET</string>
 
     <!-- WeightCalculator Static -->
     <string name="age_text">Age</string>
     <string name="weight_text">Weight</string>
     <string name="height_text">Height</string>
     <string name="buttonText">Count BMR</string>
-    <string name="refreshButton">Refresh</string>
     <string name="genderText">Gender</string>
-    <string name="maleText">Male</string>
-    <string name="femaleText">Female</string>
-    <string name="bmr_button">BMR</string>
-    <string name="laskurit_text">Laskurit</string>
-    <string name="bmi_button">BMI</string>
+    <string name="maleText">Man</string>
+    <string name="femaleText">Woman</string>
 
-    <!-- WeightCalculator non-Static -->
-    <string name="height_unit">%d cm</string>
+    <!-- WeightCalculator Non-Static -->
+    <string name="height_unit">%d Cm</string>
     <string name="weight_unit">%d Kg</string>
-    <string name="age_unit">%d years</string>
-    <string name="output">%s Calories/day. </string>
+    <string name="age_unit">%d Years</string>
+    <string name="output">%s Calories/Day. </string>
+
+    <!-- ExerciseCalculator Static -->
+    <string name="time_text">Time</string>
+    <string name="valitse_urheilulaji_textPromp">Valitse urheilulaji</string>
+
+    <!-- ExerciseCalculator Non-Static -->
+    <string name="time_unit">%d Minutes</string>
 </resources>

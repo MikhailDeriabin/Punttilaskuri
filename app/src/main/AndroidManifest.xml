@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Punttilaskuri">
+        <activity android:name=".ExerciseCalories"></activity>
         <activity android:name=".TrainingActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -16,8 +17,9 @@
         </activity>
         <activity android:name=".CalorieCalculator">
             <intent-filter>
-                <action android:name="com.example.punttilaskuri.CalorieCalculator"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="com.example.punttilaskuri.CalorieCalculator" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -35,6 +37,7 @@
         <activity android:name=".DayActivity">
             <intent-filter>
                 <action android:name="com.example.punttilaskuri.DayActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
