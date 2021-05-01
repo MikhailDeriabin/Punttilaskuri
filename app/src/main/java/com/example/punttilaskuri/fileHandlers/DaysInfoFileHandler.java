@@ -2,11 +2,14 @@ package com.example.punttilaskuri.fileHandlers;
 
 import android.content.Context;
 
+import com.example.punttilaskuri.UserInputChecker;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * This class is parent for NotesHandler and TrainingsNamesHandler classes,
@@ -147,6 +150,30 @@ public class DaysInfoFileHandler extends FileHandler {
             dayInformation.set(itemIndex, newInformation);
 
         rewriteDayInformation(date, dayInformation);
+    }
+
+    public ArrayList<Integer> getDaysWithInformation(int month, int year, String informationType) throws JSONException {
+        ArrayList<Integer> daysWithInformation = new ArrayList<>();
+        JSONObject rootObject = getJsonFileRootObject(fileName);
+
+        String monthString = Integer.toString(month);
+        String yearString = Integer.toString(year);
+        String searchingDate = monthString + "." + yearString;
+
+        UserInputChecker userInputChecker = new UserInputChecker();
+        Iterator<String> daysIterator = rootObject.keys();
+        while(daysIterator.hasNext()){
+            String date = daysIterator.next();
+            if(date.contains(searchingDate)){
+                if(rootObject.getJSONObject(date).getJSONArray(informationType).length() > 0){
+                    String dayDate = date.substring(0,2);
+                    dayDate = userInputChecker.removeSpecialCharacters(dayDate);
+                    daysWithInformation.add(Integer.parseInt(dayDate));
+                }
+            }
+        }
+
+        return daysWithInformation;
     }
 
     //Technical methods only for this class

@@ -34,7 +34,8 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline5" />
+            app:layout_constraintTop_toTopOf="@+id/guideline5"
+            android:firstDayOfWeek="2"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline4"
