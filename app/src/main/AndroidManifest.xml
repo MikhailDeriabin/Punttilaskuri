@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Punttilaskuri">
-        <activity android:name=".ExerciseCalories"></activity>
+        <activity android:name=".ExerciseCalories">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.punttilaskuri.CalculatorActivity" />
+        </activity>
         <activity android:name=".TrainingActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
