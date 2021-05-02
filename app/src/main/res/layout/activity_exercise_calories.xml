@@ -13,9 +13,9 @@
         android:text="@string/weight_text"
         android:textColor="@color/black"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/seekBarWeightExercise"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView6"
@@ -24,27 +24,27 @@
         android:text="@string/time_text"
         android:textColor="@color/black"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/seekBarTimeExercise"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarWeightExercise" />
 
     <SeekBar
         android:id="@+id/seekBarWeightExercise"
-        android:layout_width="330dp"
+        android:layout_width="0dp"
         android:layout_height="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weightText" />
 
     <SeekBar
         android:id="@+id/seekBarTimeExercise"
-        android:layout_width="330dp"
+        android:layout_width="0dp"
         android:layout_height="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/autoCompleteTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/timeMinExercise"
@@ -52,6 +52,7 @@
         android:layout_height="wrap_content"
         android:text="@string/time_unit"
         app:layout_constraintBottom_toBottomOf="@+id/textView6"
+        app:layout_constraintEnd_toStartOf="@+id/textView6"
         app:layout_constraintStart_toStartOf="@+id/seekBarTimeExercise" />
 
     <TextView
@@ -60,7 +61,8 @@
         android:layout_height="wrap_content"
         android:text="@string/time_unit"
         app:layout_constraintBottom_toBottomOf="@+id/textView6"
-        app:layout_constraintEnd_toEndOf="@+id/seekBarTimeExercise" />
+        app:layout_constraintEnd_toEndOf="@+id/seekBarTimeExercise"
+        app:layout_constraintStart_toEndOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/weightMinExercise"
@@ -68,6 +70,7 @@
         android:layout_height="wrap_content"
         android:text="@string/weight_unit"
         app:layout_constraintBottom_toBottomOf="@+id/weightText"
+        app:layout_constraintEnd_toStartOf="@+id/weightText"
         app:layout_constraintStart_toStartOf="@+id/seekBarWeightExercise" />
 
     <TextView
@@ -76,50 +79,86 @@
         android:layout_height="wrap_content"
         android:text="@string/weight_unit"
         app:layout_constraintBottom_toBottomOf="@+id/weightText"
-        app:layout_constraintEnd_toEndOf="@+id/seekBarWeightExercise" />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        app:barrierDirection="left"
-        app:constraint_referenced_ids="autoCompleteTextView"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="249dp" />
-
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        tools:layout_editor_absoluteX="205dp"
-        tools:layout_editor_absoluteY="332dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
-
-    <androidx.constraintlayout.widget.Barrier
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="right"
-        app:constraint_referenced_ids="autoCompleteTextView"
-        tools:layout_editor_absoluteX="355dp"
-        tools:layout_editor_absoluteY="209dp" />
+        app:layout_constraintEnd_toEndOf="@+id/seekBarWeightExercise"
+        app:layout_constraintStart_toEndOf="@+id/weightText" />
 
     <AutoCompleteTextView
         android:id="@+id/autoCompleteTextView"
-        android:layout_width="204dp"
+        android:layout_width="0dp"
         android:layout_height="43dp"
-        android:gravity="center"
+        android:completionHint="@string/choose_a_sport_textPromp"
         android:completionThreshold="1"
-        android:completionHint="@string/valitse_urheilulaji_textPromp"
-        android:hint="@string/valitse_urheilulaji_textPromp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:hint="@string/choose_a_sport_textPromp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarTimeExercise" />
+
+    <TextView
+        android:id="@+id/sumTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_light"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/resultView" />
+
+    <Button
+        android:id="@+id/calculate_calories_button"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:background="@android:color/background_light"
+        android:onClick="calculateCalories"
+        android:text="@string/calculate_calories_text"
+        app:backgroundTint="@android:color/holo_blue_light"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextView" />
+
+    <ListView
+        android:id="@+id/resultView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:addStatesFromChildren="false"
+        android:background="@color/cardview_shadow_start_color"
+        android:choiceMode="none"
+        android:clickable="false"
+        app:layout_constraintBottom_toTopOf="@+id/guideline12"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/calculate_calories_button" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="41dp"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="822dp"
+        android:layout_marginRight="822dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_begin="371dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="1205dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintGuide_begin="439dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
