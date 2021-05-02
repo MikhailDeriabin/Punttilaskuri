@@ -1,5 +1,7 @@
 package com.example.punttilaskuri;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * This Class holds and returns data that is stored within the variables.
  * This Class is intended for storing Activities and their MET values.
@@ -32,9 +34,7 @@ public class SingleExercise {
      * @return String that can be displayed when summary of the Object is needed.
      */
     @Override
-    public String toString() {
-        return "SingleExercise{" +
-                "activityName='" + activityName + '\'' +
-                '}';
+    public @NotNull String toString() {
+        return activityName;
     }
 }

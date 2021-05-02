@@ -60,8 +60,11 @@
 
     <!-- ExerciseCalculator Static -->
     <string name="time_text">Time</string>
-    <string name="valitse_urheilulaji_textPromp">Valitse urheilulaji</string>
+    <string name="choose_a_sport_textPromp">Choose A Sport..</string>
+    <string name="calculate_calories_text">Calculate Calories</string>
 
     <!-- ExerciseCalculator Non-Static -->
     <string name="time_unit">%d Minutes</string>
+    <string name="total_calories">Total Calories Lost %s</string>
+
 </resources>

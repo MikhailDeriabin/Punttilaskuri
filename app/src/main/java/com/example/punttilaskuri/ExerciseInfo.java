@@ -22,30 +22,30 @@ public class ExerciseInfo {
     }
     //Dataset for the ExerciseInfo calculator
     private ExerciseInfo(){
-        exercises = new ArrayList<SingleExercise>();
+        exercises = new ArrayList<>();
         //Walking, Jogging, Running
         exercises.add(new SingleExercise("Walking, slowly (stroll)",2.0));
-        exercises.add(new SingleExercise("Walking, 2 mph",2.5));
-        exercises.add(new SingleExercise("Walking, 3 mph (20 min/mile)",3.3));
-        exercises.add(new SingleExercise("Walking, 17 min/mile",3.8));
-        exercises.add(new SingleExercise("Walking, 15 min/mile",5.0));
+        exercises.add(new SingleExercise("Walking, 3.2 Kmh",2.5));
+        exercises.add(new SingleExercise("Walking, 4.8 Kmh (12.4 min/Km)",3.3));
+        exercises.add(new SingleExercise("Walking, 10.6 min/Km",3.8));
+        exercises.add(new SingleExercise("Walking, 9.3 min/Km",5.0));
         exercises.add(new SingleExercise("Race walking, moderate pace",6.5));
         exercises.add(new SingleExercise("Hiking up hills",6.9));
-        exercises.add(new SingleExercise("Hiking hills, 12 lb pack",7.5));
-        exercises.add(new SingleExercise("Jogging, 12 min/mile",8.0));
-        exercises.add(new SingleExercise("Running, 10 min/mile",10.0));
-        exercises.add(new SingleExercise("Running, 9 min/mile",11.0));
-        exercises.add(new SingleExercise("Running, 8 min/mile",12.5));
-        exercises.add(new SingleExercise("Running, 7 min/mile",14.0));
-        exercises.add(new SingleExercise("Running, 6 min/mile",16.0));
+        exercises.add(new SingleExercise("Hiking hills, 5,4 Kg pack",7.5));
+        exercises.add(new SingleExercise("Jogging, 7.5 min/Km",8.0));
+        exercises.add(new SingleExercise("Running, 6.2 min/Km",10.0));
+        exercises.add(new SingleExercise("Running, 5.6 min/Km",11.0));
+        exercises.add(new SingleExercise("Running, 5 min/Km",12.5));
+        exercises.add(new SingleExercise("Running, 4.3 min/Km",14.0));
+        exercises.add(new SingleExercise("Running, 3.7 min/Km",16.0));
         //Biking
         exercises.add(new SingleExercise("Stationary cycling, 50 watts ",3.0));
         exercises.add(new SingleExercise("Bicycling, leisurely",3.5));
         exercises.add(new SingleExercise("Stationary cycling, 100 watts",5.5));
-        exercises.add(new SingleExercise("Bicycling, 12-13 mph",8.0));
-        exercises.add(new SingleExercise("Bicycling, 14-15 mph",10.0));
-        exercises.add(new SingleExercise("Bicycling, 16-19 mph",12.0));
-        exercises.add(new SingleExercise("Bicycling, 20+ mph",16.0));
+        exercises.add(new SingleExercise("Bicycling, 7.5-8.1 Kmh",8.0));
+        exercises.add(new SingleExercise("Bicycling, 8.7-9.3 Kmh",10.0));
+        exercises.add(new SingleExercise("Bicycling, 10-11.8 Kmh",12.0));
+        exercises.add(new SingleExercise("Bicycling, 12.4+ Kmh",16.0));
         //Light activities (<3 METs)*
         exercises.add(new SingleExercise("Canoeing leisurely",2.5));
         exercises.add(new SingleExercise("Croquet",2.5));
@@ -65,7 +65,7 @@ public class ExerciseInfo {
         exercises.add(new SingleExercise("Basketball, shooting baskets",3.5));
         exercises.add(new SingleExercise("Bowling",3.0));
         exercises.add(new SingleExercise("Calisthenics, light to moderate",3.5));
-        exercises.add(new SingleExercise("Canoeing, 3 mph",3.0));
+        exercises.add(new SingleExercise("Canoeing, 4.8 Kmh",3.0));
         exercises.add(new SingleExercise("Chopping wood",6.0));
         exercises.add(new SingleExercise("Dancing, aerobic or ballet",6.0));
         exercises.add(new SingleExercise("Dancing, modern, fast",4.8));
@@ -101,11 +101,11 @@ public class ExerciseInfo {
         //Vigorous activities (>6 METs)*
         exercises.add(new SingleExercise("Aerobic dance",6.5));
         exercises.add(new SingleExercise("Aerobic dance, high impact",7.0));
-        exercises.add(new SingleExercise("Aerobic stepping, 6-8 inches",8.5));
+        exercises.add(new SingleExercise("Aerobic stepping, 15.2-20.3 cm",8.5));
         exercises.add(new SingleExercise("Backpacking",7.0));
         exercises.add(new SingleExercise("Basketball game",8.0));
         exercises.add(new SingleExercise("Calisthenics, heavy, vigorous",8.0));
-        exercises.add(new SingleExercise("Canoeing, 5 mph or portaging",7.0));
+        exercises.add(new SingleExercise("Canoeing, 8 Kmh or portaging",7.0));
         exercises.add(new SingleExercise("Fishing in stream with waders",6.5));
         exercises.add(new SingleExercise("Football, competitive",9.0));
         exercises.add(new SingleExercise("Football, touch/flag",8.0));
@@ -137,13 +137,33 @@ public class ExerciseInfo {
         exercises.add(new SingleExercise("Swimming recreational",6.0));
         exercises.add(new SingleExercise("Tennis",7.0));
         exercises.add(new SingleExercise("Volleyball, competitive/beach",8.0));
-        exercises.add(new SingleExercise("Walking, 11 min/mile",11.0));
+        exercises.add(new SingleExercise("Walking, 6.8 min/Km",11.0));
         exercises.add(new SingleExercise("Walking up stairs",8.0));
         exercises.add(new SingleExercise("Water jogging",8.0));
         exercises.add(new SingleExercise("Water polo",10.0));
     }
+    /**
+     * This function returns the whole arrayList of all the exercises saved inside this class
+     * @return ArrayList of type SingleExercise
+     */
     public ArrayList<SingleExercise> getExercises(){
         return exercises;
+    }
+
+    /**
+     * This function will return a Single exercise if its found within the exercises
+     * ArrayList if nothing matches in the ListArray
+     * it will return SingleExercise with name of Unknown and MetabolicEquivalent of Task with value of 0
+     * @param exerciseName is the name of the Exercise that you wish to return
+     * @return returns SingleExercise that holds the same name as ExerciseName or SingleExercise called Unknown
+     */
+    public SingleExercise getExerciseWithString(String exerciseName){
+        for (SingleExercise exercise : exercises) {
+            if(exerciseName.equals(exercise.toString())){
+                return exercise;
+            }
+        }
+        return new SingleExercise("Unknown", 0);
     }
 
 }
