@@ -3,6 +3,7 @@ package com.example.punttilaskuri;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.punttilaskuri.fileHandlers.NotesHandler;
+import com.example.punttilaskuri.fileHandlers.TrainingsNamesHandler;
 
 import org.json.JSONException;
 
@@ -36,7 +38,8 @@ public class DayActivity extends AppCompatActivity {
     private TextView dateTV;
     private EditText noteInputField;
     private ListView noteView;
-    private Button addNoteButton, clearAllNotesButton;
+    private Button addNoteButton, clearAllNotesButton, addTrainingToDayButton;
+    private ListView dayTrainingsListView;
     // ListView Elements
     private NoteAdapter noteAdapter;
     @Override
@@ -55,8 +58,28 @@ public class DayActivity extends AppCompatActivity {
         addNoteButton = findViewById(R.id.addNoteButton);
         clearAllNotesButton = findViewById(R.id.clearAllNotesButton);
 
+        dayTrainingsListView = findViewById(R.id.dayTrainingsListView);
+        addTrainingToDayButton = findViewById(R.id.addTrainingToDayButton);
+
         String choseDate = choseDay + "." + choseMonth + "." + choseYear;
         dateTV.setText(choseDate);
+
+        TrainingsNamesHandler trainingsNamesHandler = new TrainingsNamesHandler(this);
+        String[] trainingNames = trainingsNamesHandler.getDayInformationAsArray(choseDate);
+
+        if(trainingNames != null){
+            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.list_view_item_created_training, R.id.trainingNameTV, trainingNames);
+            dayTrainingsListView.setAdapter(arrayAdapter);
+
+            dayTrainingsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Intent nextActivity = new Intent(DayActivity.this, TrainingMoves.class);
+                    nextActivity.putExtra("trainingName", trainingNames[i]);
+                    startActivity(nextActivity);
+                }
+            });
+        }
 
         NotesHandler notesHandler = new NotesHandler(this);
 
@@ -83,6 +106,17 @@ public class DayActivity extends AppCompatActivity {
             noteAdapter = new NoteAdapter(this, android.R.layout.simple_list_item_1, notes);
             noteView.setAdapter(noteAdapter);
 
+        });
+
+        addTrainingToDayButton.setOnClickListener( v -> {
+            Intent nextActivity = new Intent(this, CreatedTrainingsActivity.class);
+            nextActivity.putExtra("isTrainingChoice", true);
+            nextActivity.putExtra("date", choseDate);
+
+            nextActivity.putExtra("choseYear", choseYear);
+            nextActivity.putExtra("choseMonth", choseMonth);
+            nextActivity.putExtra("choseDay", choseDay);
+            startActivity(nextActivity);
         });
 
         clearAllNotesButton.setOnClickListener( v -> {

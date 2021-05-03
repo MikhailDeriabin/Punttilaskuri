@@ -200,6 +200,8 @@ public class TrainingsInfoFileHandler extends FileHandler{
         while(iterator.hasNext()){
             String key = iterator.next();
             int keyStartLength = keyStart.length();
+            if(!(key.length() > keyStartLength))
+                break;
             String subStr = key.substring(0, keyStartLength);
             if(subStr.equals(keyStart)){
                 if(key.length() > keyStartLength){

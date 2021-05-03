@@ -65,6 +65,7 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
         switch (item.getItemId()) {
             case R.id.showTrainingsButton:
                 Intent nextActivity = new Intent(this, CreatedTrainingsActivity.class);
+                nextActivity.putExtra("isTrainingChoice", false);
                 startActivity(nextActivity);
                 break;
             case R.id.toBMRCalculator:
