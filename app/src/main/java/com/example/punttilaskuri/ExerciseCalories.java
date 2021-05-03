@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.icu.number.Precision;
 import android.os.Bundle;
 import android.support.v4.os.IResultReceiver;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethod;
 import android.view.inputmethod.InputMethodManager;
@@ -18,8 +20,10 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -129,15 +133,23 @@ public class ExerciseCalories extends AppCompatActivity {
             stringArrayAdapter.notifyDataSetChanged();
             sumTotal.setText(getString(R.string.total_calories, String.format(Locale.ENGLISH,"%.2f", totalCalories)));
         });
+
         //Empty the text field when it gets clicked.
         exerciseView.setOnClickListener(v -> exerciseView.setText(""));
+
         //On clickListener to remove SoftInput after choice has been made.
         exerciseView.setOnItemClickListener((parent, view, position, id) -> {
             InputMethodManager inputMethod = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             inputMethod.hideSoftInputFromWindow(view.getApplicationWindowToken(),0);
             exerciseView.clearFocus();
         });
-
+        //Overwriting onFocusChange and adding text clear when focused.
+        exerciseView.setOnFocusChangeListener((view, hasFocus) -> {
+            if(hasFocus){
+                exerciseView.setText("");
+                Log.d("Focus", "Focused");
+            }
+        });
     }
 
     //Populates the View with new results that get added to the Array and the adapter updates.
@@ -154,6 +166,24 @@ public class ExerciseCalories extends AppCompatActivity {
         minTime = 1;
         maxTime = 179 + minTime;
     }
+    //Builds the Results to a String that looks decent
+    private String resultListToString(){
+        StringBuilder resultAsString = new StringBuilder();
+        for (String result : resultList){
+            resultAsString.append(result).append("\n");
+        }
+        resultAsString.append(sumTotal.getText());
+        return resultAsString.toString();
+    }
+
+    /**
+     * Saves the results to the clipboard for possible further use.
+     * @param view used by a button on the activity_exercise_calories
+     */
+    public void clipBoardSave(View view){
+        CopyToClipboard.copy(getSystemService(Context.CLIPBOARD_SERVICE),"Exercises_Texts", resultListToString());
+        Toast.makeText(this, "Saved to clipboard", Toast.LENGTH_SHORT).show();
+    }
 
     /**
      * This function calls the exercise based of users input and if user inputs something
@@ -168,7 +198,7 @@ public class ExerciseCalories extends AppCompatActivity {
         double met = exercise.getMET();
         if(met > 0.0){
             metCalculator.setExerciseMet(met);
-            populateView(exercise, metCalculator.calculateCalMet(), metCalculator.getTime());
+            populateView(exercise, Double.parseDouble(String.format(Locale.ENGLISH,"%.2f",metCalculator.calculateCalMet())), metCalculator.getTime());
             Log.d(TAG, getString(R.string.total_calories, Double.toString(totalCalories)));
             sumTotal.setText(getString(R.string.total_calories, String.format(Locale.ENGLISH,"%.2f", totalCalories)));
         }
