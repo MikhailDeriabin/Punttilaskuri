@@ -129,12 +129,14 @@ public class TrainingActivity extends AppCompatActivity {
             }
 
             Intent nextActivity = new Intent(this, CreatedTrainingsActivity.class);
+            nextActivity.putExtra("isTrainingChoice", false);
             startActivity(nextActivity);
         });
 
         deleteTrainingButton.setOnClickListener(v -> {
             trainingsInfoFileHandler.removeTraining(trainingName);
             Intent nextActivity = new Intent(this, CreatedTrainingsActivity.class);
+            nextActivity.putExtra("isTrainingChoice", false);
             startActivity(nextActivity);
         });
     }
