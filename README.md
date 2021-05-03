@@ -1,3 +1,4 @@
 # ExerciseMemo
-ExerciseMemo is a personal training journal and notes app for Android.
-ExerciseMemo helps to create and record experiences and ideas throughout a day.
+ExerciseMemo is a personal training journal and notes app, which also contains couple calculators.
+ExerciseMemo helps to create and record experiences and calculate calories throughout a day.
+Available for Android.
