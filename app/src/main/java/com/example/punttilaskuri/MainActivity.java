@@ -23,9 +23,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Initialize buttons
         Button calendarButton = findViewById(R.id.calendarButton);
         Button calculatorButton = findViewById(R.id.calculatorButton);
         Button practicesButton = findViewById(R.id.practiceButton);
+        Button userInfoButton = findViewById(R.id.userInfoButton);
 
         calendarButton.setOnClickListener(v -> {
             Intent intent = new Intent("com.example.punttilaskuri.CalendarActivity");
@@ -40,6 +42,11 @@ public class MainActivity extends AppCompatActivity {
         practicesButton.setOnClickListener(v ->{
             Intent intent = new Intent("com.example.punttilaskuri.CreatedTrainingsActivity");
             intent.putExtra("isTrainingsChoice", false);
+            startActivity(intent);
+        });
+
+        userInfoButton.setOnClickListener(v ->{
+            Intent intent = new Intent("com.example.punttilaskuri.UserProfileActivity");
             startActivity(intent);
         });
     }

@@ -84,6 +84,14 @@
         ACSM Resource Manual 5th Edition, 2006. </string>
     <string name="link_met"><a href="http://media.hypersites.com/clients/1235/filemanager/MHC/METs.pdf">MET Table Link Here</a></string>
     <string name="copy_to_clipboard_text">copy to clipboard</string>
+    <string name="user_info">User Info</string>
 
+    <!-- UserProfile -->
+    <string name="user_name">Name</string>
+    <string name="user_age">Age</string>
+    <string name="user_weight">Weight</string>
+    <string name="user_height">Height</string>
+    <string name="user_input"> </string>
+    <string name="user_button">Save</string>
 
 </resources>

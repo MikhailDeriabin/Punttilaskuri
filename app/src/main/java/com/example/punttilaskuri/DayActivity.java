@@ -40,6 +40,7 @@ public class DayActivity extends AppCompatActivity {
     private ListView noteView;
     private Button addNoteButton, clearAllNotesButton, addTrainingToDayButton;
     private ListView dayTrainingsListView;
+    private ArrayList<String> notes;
     // ListView Elements
     private NoteAdapter noteAdapter;
     @Override
@@ -68,29 +69,25 @@ public class DayActivity extends AppCompatActivity {
         String[] trainingNames = trainingsNamesHandler.getDayInformationAsArray(choseDate);
 
         if(trainingNames != null){
-            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.list_view_item_created_training, R.id.trainingNameTV, trainingNames);
+            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.list_view_item_created_training, R.id.trainingNameTV, trainingNames);
             dayTrainingsListView.setAdapter(arrayAdapter);
 
-            dayTrainingsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Intent nextActivity = new Intent(DayActivity.this, TrainingMoves.class);
-                    nextActivity.putExtra("trainingName", trainingNames[i]);
-                    startActivity(nextActivity);
-                }
+            dayTrainingsListView.setOnItemClickListener((adapterView, view, i, l) -> {
+                Intent nextActivity = new Intent(DayActivity.this, TrainingMoves.class);
+                nextActivity.putExtra("trainingName", trainingNames[i]);
+                startActivity(nextActivity);
             });
         }
 
         NotesHandler notesHandler = new NotesHandler(this);
 
-        // ListView stuff
+        // NoteListView stuff
         noteView = (ListView) findViewById(R.id.noteView);
-        ArrayList<String> notes = new ArrayList<>();
-        noteAdapter = new NoteAdapter(this, android.R.layout.simple_list_item_1, notes);
-        noteView.setAdapter(noteAdapter);
+        notes = new ArrayList<>();
+        String allNotes = notesHandler.getDayInformationAsString(choseDate);
+        updateNoteList(allNotes);
 
         //Events
-
         addNoteButton.setOnClickListener( v -> {
             String userInput = noteInputField.getText().toString();
             try {
@@ -99,12 +96,8 @@ public class DayActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            String allNotes = notesHandler.getDayInformationAsString(choseDate);
-            String[] lines = allNotes.split("\n");
-            notes.clear();
-            notes.addAll(Arrays.asList(lines));
-            noteAdapter = new NoteAdapter(this, android.R.layout.simple_list_item_1, notes);
-            noteView.setAdapter(noteAdapter);
+            String tempNotes = notesHandler.getDayInformationAsString(choseDate);
+            updateNoteList(tempNotes);
 
         });
 
@@ -154,8 +147,12 @@ public class DayActivity extends AppCompatActivity {
             return true;
         }
     }
-    public void updateNoteList(String noteLines){
-
+    public void updateNoteList(String allNotes){
+        String[] lines = allNotes.split("\n");
+        notes.clear();
+        notes.addAll(Arrays.asList(lines));
+        noteAdapter = new NoteAdapter(this, android.R.layout.simple_list_item_1, notes);
+        noteView.setAdapter(noteAdapter);
     }
 }
 
