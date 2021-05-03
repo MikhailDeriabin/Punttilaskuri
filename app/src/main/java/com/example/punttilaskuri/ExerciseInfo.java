@@ -25,8 +25,8 @@ public class ExerciseInfo {
         exercises = new ArrayList<>();
         //Walking, Jogging, Running
         exercises.add(new SingleExercise("Walking, slowly (stroll)",2.0));
-        exercises.add(new SingleExercise("Walking, 3.2 Kmh",2.5));
-        exercises.add(new SingleExercise("Walking, 4.8 Kmh (12.4 min/Km)",3.3));
+        exercises.add(new SingleExercise("Walking, 18.6 min/Km",2.5));
+        exercises.add(new SingleExercise("Walking, 12.4 min/Km",3.3));
         exercises.add(new SingleExercise("Walking, 10.6 min/Km",3.8));
         exercises.add(new SingleExercise("Walking, 9.3 min/Km",5.0));
         exercises.add(new SingleExercise("Race walking, moderate pace",6.5));

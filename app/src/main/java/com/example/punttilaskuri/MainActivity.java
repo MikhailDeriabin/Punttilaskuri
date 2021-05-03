@@ -17,24 +17,29 @@ import java.nio.charset.StandardCharsets;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button calendarButton, calculatorButton;
-
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        calendarButton = findViewById(R.id.calendarButton);
-        calculatorButton = findViewById(R.id.calculatorButton);
+        Button calendarButton = findViewById(R.id.calendarButton);
+        Button calculatorButton = findViewById(R.id.calculatorButton);
+        Button practicesButton = findViewById(R.id.practiceButton);
 
-        calendarButton.setOnClickListener( v -> {
+        calendarButton.setOnClickListener(v -> {
             Intent intent = new Intent("com.example.punttilaskuri.CalendarActivity");
             startActivity(intent);
         });
 
-        calculatorButton.setOnClickListener( v -> {
+        calculatorButton.setOnClickListener(v -> {
             Intent intent = new Intent("com.example.punttilaskuri.CalculatorActivity");
+            startActivity(intent);
+        });
+
+        practicesButton.setOnClickListener(v ->{
+            Intent intent = new Intent("com.example.punttilaskuri.CreatedTrainingsActivity");
+            intent.putExtra("isTrainingsChoice", false);
             startActivity(intent);
         });
     }

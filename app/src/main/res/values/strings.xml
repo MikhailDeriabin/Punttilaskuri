@@ -1,7 +1,7 @@
 <resources>
     <!-- mainActivity -->
     <string name="app_name">ExerciseMemo</string>
-    <string name="mainActivity_title">Welcome,\nchoose an action:</string>
+    <string name="mainActivity_title">Welcome to ExerciseMemo</string>
     <string name="mainActivity_calendarButton">Calendars</string>
     <string name="mainActivity_calculatorButton">Calculators</string>
 
