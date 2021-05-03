@@ -67,4 +67,20 @@
     <string name="time_unit">%d Minutes</string>
     <string name="total_calories">Total Calories Lost %s</string>
 
+    <!-- Calculator Information Text-->
+    <string name="info_bmr_calculator_title">BMR Calculator</string>
+    <string name="all_about_bmr">BMR is a estimation about the amount of calories human uses during rest.
+        This is called the resting metabolic rate. The Equation used here is the Revised Harris-Benedict Equation.
+        This number usually represents 60-75% of total energy consumption. There is a Stress and Activity -factor that
+        has been ignored in this version of the calculation. More on that on the link below.</string>
+    <string name="link_bmr"><a href="https://globalrph.com/medcalcs/harris-benedict-equation-updated-basal-metabolic-rate/">BMR Link Here</a></string>
+    <string name="info_met_calculator_title">MET Calculator</string>
+    <string name="all_about_met">MET stands for Metabolic EquivalenT this calculator counts how many
+        calories you use per minute based on your weight the activity you are doing.
+        The number estimations for each activity can be found on the link below.
+        The calculations are based on them.</string>
+    <string name="met_reference">Reference: American College of Sports Medicine. The Compendium of Physical Activities.
+        ACSM Resource Manual 5th Edition, 2006. </string>
+    <string name="link_met"><a href="http://media.hypersites.com/clients/1235/filemanager/MHC/METs.pdf">MET Table Link Here</a></string>
+
 </resources>

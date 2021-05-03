@@ -7,15 +7,15 @@
     tools:context=".CalorieCalculator">
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline9"
+        android:id="@+id/guideline_bmr_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="401dp"
+        app:layout_constraintGuide_percent="0.78"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline13"
+        android:id="@+id/guideline_bmr_right"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="346dp"
@@ -24,11 +24,11 @@
         android:layout_marginRight="65dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_end="65dp"
+        app:layout_constraintGuide_percent="0.95"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline14"
+        android:id="@+id/guideline_bmr_left"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="65dp"
@@ -37,10 +37,24 @@
         android:layout_marginRight="346dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_begin="65dp"
+        app:layout_constraintGuide_percent="0.05"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bmr_center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="65dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginEnd="346dp"
+        android:layout_marginRight="346dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_percent="0.45"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.Group
+        android:id="@+id/group3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="202dp"
@@ -55,92 +69,100 @@
 
     <Button
         android:id="@+id/count"
-        android:layout_width="122dp"
-        android:layout_height="44dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:onClick="onClickCalories"
         android:text="@string/buttonText"
         app:backgroundTint="@android:color/holo_blue_dark"
-        app:layout_constraintBottom_toTopOf="@+id/guideline9"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bmr_top"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_bmr_right"
         app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/guideline_bmr_left"
+        app:layout_constraintTop_toTopOf="@+id/guideline_bmr_weight5" />
 
     <TextView
         android:id="@+id/age"
-        android:layout_width="44dp"
-        android:layout_height="36dp"
-        android:text="@string/age_text"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:gravity="center"
+        android:text="@string/age_text"
         android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/seekBarAge"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bmr_weight3"
         app:layout_constraintEnd_toEndOf="@+id/seekBarAge"
-        app:layout_constraintStart_toStartOf="@+id/seekBarAge" />
+        app:layout_constraintStart_toStartOf="@+id/seekBarAge"
+        app:layout_constraintTop_toTopOf="@+id/guideline_bmr_weight2" />
 
     <TextView
         android:id="@+id/weight"
-        android:layout_width="74dp"
-        android:layout_height="39dp"
-        android:text="@string/weight_text"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:gravity="center"
+        android:text="@string/weight_text"
         android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/seekBarWeight"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bmr_weight"
         app:layout_constraintEnd_toEndOf="@+id/seekBarWeight"
-        app:layout_constraintStart_toStartOf="@+id/seekBarWeight" />
+        app:layout_constraintStart_toStartOf="@+id/seekBarWeight"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarHeight" />
 
     <TextView
         android:id="@+id/weight2"
-        android:layout_width="113dp"
-        android:layout_height="38dp"
-        android:text="@string/genderText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:gravity="center"
+        android:text="@string/genderText"
         android:textColor="#000000"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/count"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_bmr_center"
+        app:layout_constraintStart_toStartOf="@+id/guideline_bmr_left"
+        app:layout_constraintTop_toTopOf="@+id/guideline_bmr_weight4" />
 
     <TextView
         android:id="@+id/height"
-        android:layout_width="72dp"
-        android:layout_height="32dp"
-        android:text="@string/height_text"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:gravity="center"
+        android:text="@string/height_text"
         android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/seekBarHeight"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bmr_height_top"
         app:layout_constraintEnd_toEndOf="@+id/seekBarHeight"
-        app:layout_constraintStart_toStartOf="@+id/seekBarHeight" />
+        app:layout_constraintStart_toStartOf="@+id/seekBarHeight"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <SeekBar
         android:id="@+id/seekBarAge"
         style="@style/Widget.AppCompat.SeekBar"
-        android:layout_width="330dp"
-        android:layout_height="40dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:max="100"
-        app:layout_constraintBottom_toTopOf="@+id/weight2"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bmr_weight4"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_bmr_right"
         app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/guideline_bmr_left"
+        app:layout_constraintTop_toTopOf="@+id/guideline_bmr_weight3" />
 
     <SeekBar
         android:id="@+id/seekBarWeight"
-        android:layout_width="330dp"
-        android:layout_height="40dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:max="300"
-        app:layout_constraintBottom_toTopOf="@+id/age"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bmr_weight2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_bmr_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_bmr_left"
+        app:layout_constraintTop_toTopOf="@+id/guideline_bmr_weight" />
 
     <SeekBar
         android:id="@+id/seekBarHeight"
-        android:layout_width="330dp"
-        android:layout_height="40dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:max="250"
-        app:layout_constraintBottom_toTopOf="@+id/weight"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bmr_height_top2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_bmr_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_bmr_left"
+        app:layout_constraintTop_toTopOf="@+id/guideline_bmr_height_top" />
 
     <TextView
         android:id="@+id/ageNow"
@@ -191,46 +213,46 @@
         app:layout_constraintEnd_toEndOf="@+id/seekBarAge" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline15"
+        android:id="@+id/guideline_bmr_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1703dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintGuide_end="74dp" />
+        app:layout_constraintGuide_percent="0.95" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:constraint_referenced_ids="weight,weightNow,seekBarHeight,height,heightMax,weight2,seekBarWeight,weightMax,heightNow,ageNow,ageMax,seekBarAge,age"
-        app:layout_constraintBottom_toTopOf="@+id/count"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="360dp"
+        android:layout_height="361dp"
+        app:constraint_referenced_ids="weight,weightNow,seekBarHeight,height,heightMax,weight2,seekBarWeight,weightMax,heightNow,ageNow,ageMax,seekBarAge,age" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="94dp"
-        android:layout_height="55dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/count"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintEnd_toStartOf="@+id/guideline_bmr_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_bmr_center"
+        app:layout_constraintTop_toTopOf="@+id/weight2">
 
         <RadioButton
             android:id="@+id/radioButtonMale"
-            android:layout_width="match_parent"
-            android:layout_height="27dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:checked="true"
             android:gravity="center"
             android:onClick="onClickMale"
+            android:layout_marginRight="10sp"
             android:text="@string/maleText"
-            android:textColor="@android:color/secondary_text_light" />
+            android:textColor="@android:color/secondary_text_light"
+            android:layout_marginEnd="10sp" />
 
         <RadioButton
             android:id="@+id/radioButtonFemale"
-            android:layout_width="match_parent"
-            android:layout_height="29dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:onClick="onClickFemale"
             android:text="@string/femaleText"
@@ -239,14 +261,71 @@
 
     <TextView
         android:id="@+id/output"
-        android:layout_width="257dp"
-        android:layout_height="199dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:textColor="@color/black"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline9" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bmr_bottom"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_bmr_right"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline_bmr_left"
+        app:layout_constraintTop_toTopOf="@+id/guideline_bmr_top"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bmr_height_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bmr_height_top2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.18"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bmr_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.26"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bmr_weight2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.36"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bmr_weight3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.44"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bmr_weight4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.54"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bmr_weight5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.66"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

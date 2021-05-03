@@ -9,6 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Punttilaskuri">
+        <activity android:name=".CalculatorInfoActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.punttilaskuri.CalculatorActivity" />
+        </activity>
         <activity android:name=".ExerciseCalories">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -25,6 +30,7 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.punttilaskuri.CalculatorActivity" />
@@ -32,8 +38,10 @@
         <activity android:name=".CreatedTrainingsActivity">
             <intent-filter>
                 <action android:name="com.example.punttilaskuri.CreatedTrainingsActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.punttilaskuri.TrainingActivity" />
@@ -44,6 +52,7 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.punttilaskuri.CalendarActivity" />
@@ -54,6 +63,7 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.punttilaskuri.MainActivity" />
@@ -66,6 +76,7 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.punttilaskuri.MainActivity" />

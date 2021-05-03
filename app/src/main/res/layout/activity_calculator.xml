@@ -19,16 +19,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/calculatorBackButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/backButton"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/infoEnter" />
-
-    <Button
         android:id="@+id/bmrEnter"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -36,6 +26,7 @@
         android:text="@string/bmr_button"
         android:textColorLink="#FFFFFF"
         android:textSize="36sp"
+        app:backgroundTint="@android:color/holo_blue_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/counterTitle" />
@@ -47,6 +38,7 @@
         android:onClick="calculatorButtons"
         android:text="@string/Exercise_button"
         android:textSize="36sp"
+        app:backgroundTint="@android:color/holo_blue_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,6 +51,7 @@
         android:onClick="calculatorButtons"
         android:text="@string/laskuri_info"
         android:textSize="36sp"
+        app:backgroundTint="@android:color/holo_blue_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
