@@ -15,6 +15,7 @@
     <!-- dayActivity -->
     <string name="dayActivity_noteInputField">Note</string>
     <string name="dayActivity_addNoteButton">Add a Note</string>
+    <string name="clear_all_notes_from_device">clear all notes from device</string>
 
     <!-- trainingActivity -->
     <string name="trainingActivity_deleteTrainingButton">delete training</string>
@@ -82,5 +83,6 @@
     <string name="met_reference">Reference: American College of Sports Medicine. The Compendium of Physical Activities.
         ACSM Resource Manual 5th Edition, 2006. </string>
     <string name="link_met"><a href="http://media.hypersites.com/clients/1235/filemanager/MHC/METs.pdf">MET Table Link Here</a></string>
+
 
 </resources>
