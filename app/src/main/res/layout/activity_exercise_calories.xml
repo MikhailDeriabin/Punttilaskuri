@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context=".ExerciseCalories">
 
     <TextView
@@ -223,5 +225,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintGuide_percent="0.36"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contentDescription="@string/copy_to_clipboard_text"
+        android:focusable="true"
+        android:onClick="clipBoardSave"
+        app:backgroundTint="@color/holo_blue_light"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineExerciseBottom"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineExerciseRight"
+        app:srcCompat="?attr/actionModeCopyDrawable" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

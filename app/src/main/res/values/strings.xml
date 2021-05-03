@@ -82,5 +82,6 @@
     <string name="met_reference">Reference: American College of Sports Medicine. The Compendium of Physical Activities.
         ACSM Resource Manual 5th Edition, 2006. </string>
     <string name="link_met"><a href="http://media.hypersites.com/clients/1235/filemanager/MHC/METs.pdf">MET Table Link Here</a></string>
+    <string name="copy_to_clipboard_text">copy to clipboard</string>
 
 </resources>
