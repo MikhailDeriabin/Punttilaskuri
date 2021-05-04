@@ -29,6 +29,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
     private Button saveButton;
     private EditText nameEdit, ageEdit, weightEdit, heightEdit;
+    private UserInfo userInfo;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +44,7 @@ public class UserProfileActivity extends AppCompatActivity {
             userInput += ageEdit.getText().toString() + "\n";
             userInput += weightEdit.getText().toString() + "\n";
             userInput += heightEdit.getText().toString() + "\n";
+
             saveToFile("", this);
             saveToFile(userInput, this);
             updateUi();
@@ -52,6 +54,7 @@ public class UserProfileActivity extends AppCompatActivity {
     //Initializes UI-components and updates text in EditText-fields
     public void updateUi(){
         ArrayList<String> fileData = new ArrayList<>(readFromFile(this));
+        userInfo = new UserInfo(fileData);
         nameEdit= (EditText) findViewById(R.id.nameInput);
         nameEdit.setText(fileData.get(0));
         ageEdit= (EditText) findViewById(R.id.ageInput);
