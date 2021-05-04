@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     app:layout_goneMarginTop="100dp"
     tools:context=".CalculatorActivity">
+    <!-- Tekijä Henri Johansson -->
 
     <TextView
         android:id="@+id/counterTitle"

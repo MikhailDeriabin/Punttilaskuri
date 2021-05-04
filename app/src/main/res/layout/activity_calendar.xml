@@ -8,6 +8,7 @@
     android:id="@+id/drawerLayout"
     android:theme="@style/Theme.Punttilaskuri.NoActionBar"
     android:fitsSystemWindows="true">
+    <!-- Tekijä Mikhail Deriabin -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

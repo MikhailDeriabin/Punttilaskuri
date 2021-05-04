@@ -5,6 +5,7 @@
     android:layout_height="30dp"
     android:background="@android:color/holo_blue_dark"
     android:gravity="bottom">
+    <!-- Tekijä Mikhail Deriabin -->
 
 
 
