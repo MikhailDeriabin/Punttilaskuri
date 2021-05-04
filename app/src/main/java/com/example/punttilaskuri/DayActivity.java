@@ -32,6 +32,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * @author Sami Miettinen
+ */
 public class DayActivity extends AppCompatActivity {
 
     // UI elements

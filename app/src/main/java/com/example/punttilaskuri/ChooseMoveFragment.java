@@ -18,6 +18,9 @@ import com.example.punttilaskuri.fileHandlers.MovesInfoFileHandler;
 
 import java.io.UnsupportedEncodingException;
 
+/**
+ * @author Mikhail Deriabin
+ */
 public class ChooseMoveFragment extends Fragment {
     private Training training;
     private ListView movesNamesListView, trainingMovesListView;

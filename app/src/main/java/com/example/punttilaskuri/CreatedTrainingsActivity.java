@@ -16,6 +16,9 @@ import com.example.punttilaskuri.fileHandlers.TrainingsNamesHandler;
 
 import org.json.JSONException;
 
+/**
+ * @author Mikhail Deriabin
+ */
 public class CreatedTrainingsActivity extends AppCompatActivity {
 
     private Button addTrainingButton;

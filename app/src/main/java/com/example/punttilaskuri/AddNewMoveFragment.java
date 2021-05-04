@@ -20,6 +20,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 
+/**
+ * @author Mikhail Deriabin
+ */
 public class AddNewMoveFragment extends Fragment {
 
     private EditText newMoveNameInput, newMoveTimesInput, newMoveLoopsInput;

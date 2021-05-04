@@ -10,6 +10,9 @@ import com.example.punttilaskuri.fileHandlers.TrainingsInfoFileHandler;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * @author Mikhail Deriabin
+ */
 public class TrainingMoves extends AppCompatActivity {
 
     private ListView movesNamesListView;

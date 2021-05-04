@@ -22,6 +22,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+/**
+ * @author Mikhail Deriabin
+ */
 public class TrainingActivity extends AppCompatActivity {
 
     private EditText trainingNameInput;

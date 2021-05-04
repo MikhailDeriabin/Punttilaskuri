@@ -10,6 +10,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
+/**
+ * @author Mikhail Deriabin
+ */
 public class TrainingMovesAdapter extends BaseAdapter {
     private LayoutInflater layoutInflater;
     private Training training;

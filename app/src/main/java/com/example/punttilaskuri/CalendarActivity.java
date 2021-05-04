@@ -15,6 +15,9 @@ import android.widget.CalendarView;
 
 import com.google.android.material.navigation.NavigationView;
 
+/**
+ * @author Mikhail Deriabin
+ */
 public class CalendarActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     // UI elements
