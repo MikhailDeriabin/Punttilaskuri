@@ -43,13 +43,13 @@ public class ExerciseCalories extends AppCompatActivity {
     private int maxWeight;
     private int maxTime;
     private AutoCompleteTextView exerciseView;
-    ArrayAdapter<String> stringArrayAdapter;
+    private ArrayAdapter<String> stringArrayAdapter;
 
-    TextView sumTotal;
+    private TextView sumTotal;
 
-    ArrayList<String> resultList;
-    ArrayList<Double> calorieList;
-    double totalCalories;
+    private ArrayList<String> resultList;
+    private ArrayList<Double> calorieList;
+    private double totalCalories;
     private MetCalculator metCalculator;
     private static final String TAG = SingleExercise.class.getName();
 

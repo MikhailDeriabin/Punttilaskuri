@@ -15,6 +15,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Main starting activity where the application starts.
+ * @author Mikhail Deriable, Henri Johansson
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
