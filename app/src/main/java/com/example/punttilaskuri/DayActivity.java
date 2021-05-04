@@ -92,7 +92,9 @@ public class DayActivity extends AppCompatActivity {
 
         //Events
         addNoteButton.setOnClickListener( v -> {
+            UserInputChecker userInputChecker = new UserInputChecker();
             String userInput = noteInputField.getText().toString();
+            userInput = userInputChecker.removeSpecialCharacters(userInput);
             try {
                 notesHandler.addInformation(choseDate, userInput);
             } catch (JSONException e) {
